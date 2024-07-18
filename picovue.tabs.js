@@ -17,10 +17,6 @@ export const PvTab = {
 
 export const PvTabs = {
   props: {
-    title: {
-      type: String,
-      default: 'Modal'
-    },
     stretch: {
       type: Boolean,
       default: false
