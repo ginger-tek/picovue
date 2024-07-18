@@ -47,7 +47,7 @@ You can globally import only the components you need:
 </script>
 ```
 
-You can even import individual components only in components where you need them:
+You can even import individual components only where you need them:
 ```js
 import { PvTable } from 'https://unpkg.com/picovue/picovue.table.js'
 
@@ -58,7 +58,7 @@ export default {
 }
 ```
 
-# Components
+# Component Docs
 - [PvTable `<pv-table>`](/docs/table.md)
 - [PvModal `<pv-modal>`](/docs/modal.md)
 - [PvDropdown `<pv-dropdown>`](/docs/dropdown.md)
