@@ -59,3 +59,9 @@ export default {
 ```
 
 # Components
+- [PvTable `<pv-table>`](/docs/table.md)
+- [PvModal `<pv-modal>`](/docs/modal.md)
+- [PvDropdown `<pv-dropdown>`](/docs/dropdown.md)
+- [PvToaster `<pv-toaster>`](/docs/toaster.md)
+- [PvDarkMode `<pv-dark-mode>`](/docs/dark-mode.md)
+- [PvTabs `<pv-tabs>` + PvTab `<pv-tab>`](/docs/tabs.md)
