@@ -1,12 +1,8 @@
 # PvDropdown `<pv-dropdown>`
-A responsive, generative table for rendering data, with custom field rendering and filtering.
+An data-driven dropdown component, which can be used for selection or navigation
 
 ## Props
 |Name|Type|Default|Details|
 |---|---|---|---|
-|a|a|a|a|
-
-## Slots
-|Name|Details|
-|---|---|
-|a|a|
+|`items`|`Array`|`undefined`|Array of strings, numbers, or objects with a `text` property, and either a `value` or `href` property|
+|`v-model`|`String, Object, Number`|`undefined`|Binds a variable to the selected item|
