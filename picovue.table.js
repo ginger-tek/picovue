@@ -50,7 +50,14 @@ export const PvTable = {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-show="busy">
+        <tr>
+          <td colspan="100%">
+            <slot name="busy"><div aria-busy="true"></div></slot>
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-show="!busy">
         <tr v-for="(r, rx) in rows" :key="'r'+rx">
           <td v-for="c in cols" :key="c.name">
             <slot :name="toAttributeName(c.name)" :="r">{{ r[c.name] }}</slot>
@@ -163,9 +170,10 @@ sheet.replaceSync(`
   align-items: center;
 }
 .pv-table thead th .sorter .sort {
-  padding: 0 .5rem;
-  line-height: 1rem;
-  opacity: .5;
+  padding: 0px 0.5rem;
+  line-height: calc(.95* (var(--pico-font-size)));
+  font-size: calc(.75* (var(--pico-font-size)));
+  opacity: 0.5;
   cursor: pointer;
 }
 .pv-table thead th .sorter .sort.active {
