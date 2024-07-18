@@ -9,7 +9,7 @@ export const PvDropdown = {
       default: []
     }
   },
-  emit: ['selected', 'modelValue', 'update:modelValue'],
+  emit: ['modelValue', 'update:modelValue'],
   template: `<details ref="dropdown" class="pv-dropdown dropdown">
     <summary><slot></slot></summary>
     <ul>
