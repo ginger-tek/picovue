@@ -28,16 +28,20 @@ const closeToast = (e) => {
   setTimeout(() => el?.remove(), 201)
 }
 
-export const appendToast = ({ body, dismissAfter = 5, stay = false, type = null }, id = 'pv-toaster') => {
+export const appendToast = (body, opts = {}) => {
+  opts.dismissAfter ??= 5
+  opts.type ??= null
+  opts.stay ??= false
+  opts.id ??= 'pv-toaster'
   const toast = document.createElement('div')
   toast.classList.add('toast')
-  if (type) toast.classList.add(type)
+  if (opts.type) toast.classList.add(opts.type)
   toast.innerHTML = `<div aria-label="Close" class="close"></div>
   <div>${body}</div>`
   toast.querySelector('.close')?.addEventListener('click', ev => closeToast(ev.currentTarget.parentElement))
-  document.getElementById(id)?.appendChild(toast)
+  document.getElementById(opts.id)?.appendChild(toast)
   setTimeout(() => toast.classList.add('show'), 1)
-  if (!stay) setTimeout(() => closeToast(toast), dismissAfter * 1000)
+  if (!opts.stay) setTimeout(() => closeToast(toast), opts.dismissAfter * 1000)
 }
 
 export default {
