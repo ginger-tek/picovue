@@ -1,4 +1,5 @@
-# picovue
+# PicoVue
+
 Vue.js 3 + Pico CSS 2
 
 # How to use
