@@ -1,6 +1,6 @@
 <div align="center">
   <h1>PicoVue</h1>
-  <p>Vue.js 3 + Pico CSS 2</p>
+  <p>A simple, no-build web UI Library, made for Pico CSS v2 with Vue.js 3</p>
 </div>
 
 # How to use
