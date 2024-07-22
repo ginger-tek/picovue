@@ -1,6 +1,7 @@
-# PicoVue
-
-Vue.js 3 + Pico CSS 2
+<div align="center">
+  <h1>PicoVue</h1>
+  <p>Vue.js 3 + Pico CSS 2</p>
+</div>
 
 # How to use
 PicoVue is a drop-in component library of plain ES6 module Vue.js 3 files used for sprinkling in Pico-styled, Vue-driven interactivity to any web page.
