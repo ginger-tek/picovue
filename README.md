@@ -12,7 +12,7 @@ This is meant to be used with the [ESM/IIFE build version of Vue.js 3](https://w
 However, you can add PicoVue to an SFC transpiled Vue.js project by importing the ESM bundler from `vue` first to make it available to the library:
 ```js
 import { createApp } from 'vue'
-import * as Vue from 'vue/dist/vue.esm-bundler'
+import * as Vue from 'vue/dist/vue.esm-bundler.js'
 import PicoVue from '@gingertek/picovue'
 import App from './app.vue'
 
