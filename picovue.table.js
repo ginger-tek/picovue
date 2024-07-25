@@ -179,5 +179,12 @@ sheet.replaceSync(`
 .pv-table thead th .sorter .sort.active {
   opacity: 1;
 }
+.pv-table tbody :where(button, [role=button], input:not([type=checkbox], [type=radio], [type=range], [type=file]), select) {
+  height: auto;
+  margin-right: inherit;
+  margin-bottom: 0;
+  margin-left: inherit;
+  padding: calc(var(--pico-nav-link-spacing-vertical) - var(--pico-border-width)* 2) var(--pico-nav-link-spacing-horizontal);
+}
 `)
 document.adoptedStyleSheets.push(sheet)
