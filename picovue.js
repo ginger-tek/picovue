@@ -4,6 +4,7 @@ import PvModal from './picovue.modal.js'
 import PvTabs from './picovue.tabs.js'
 import PvDarkMode from './picovue.dark-mode.js'
 import PvDropdown from './picovue.dropdown.js'
+import PvAlert from './picovue.alert.js'
 
 export default {
   install(app) {
@@ -13,5 +14,6 @@ export default {
     PvTabs.install(app)
     PvDarkMode.install(app)
     PvDropdown.install(app)
+    PvAlert.install(app)
   }
 }

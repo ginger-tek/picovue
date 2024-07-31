@@ -67,3 +67,4 @@ export default {
 - [PvToaster `<pv-toaster>`](/docs/toaster.md)
 - [PvDarkMode `<pv-dark-mode>`](/docs/dark-mode.md)
 - [PvTabs `<pv-tabs>` + PvTab `<pv-tab>`](/docs/tabs.md)
+- [PvAlert `<pv-alert>`](/docs/alert.md)
