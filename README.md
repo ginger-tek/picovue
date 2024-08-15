@@ -9,15 +9,15 @@ This is meant to be used with the [ESM/IIFE build version of Vue.js 3](https://w
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
-However, you can add PicoVue to an SFC transpiled Vue.js project by importing the ESM bundler from `vue` first to make it available to the library:
+~~However, you can add PicoVue to an SFC transpiled Vue.js project by importing the ESM bundler from `vue` first to make it available to the library~~ This functionality does not actually work, apparently. Apparently, the `* as Vue` import is not implicitly inherited into the PicoVue import, therefore `Vue` doesn't exist within the modules. Will work on coming up with a solution for this soon:
 ```js
 import { createApp } from 'vue'
-import * as Vue from 'vue/dist/vue.esm-bundler.js'
-import PicoVue from '@ginger-tek/picovue'
+// import * as Vue from 'vue/dist/vue.esm-bundler.js'
+// import PicoVue from '@ginger-tek/picovue'
 import App from './app.vue'
 
 createApp(App)
-  .use(PicoVue)
+  // .use(PicoVue)
   .mount('#app')
 ```
 
