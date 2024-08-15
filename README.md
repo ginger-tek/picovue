@@ -13,7 +13,7 @@ However, you can add PicoVue to an SFC transpiled Vue.js project by importing th
 ```js
 import { createApp } from 'vue'
 import * as Vue from 'vue/dist/vue.esm-bundler.js'
-import PicoVue from '@gingertek/picovue'
+import PicoVue from '@ginger-tek/picovue'
 import App from './app.vue'
 
 createApp(App)
@@ -26,7 +26,7 @@ The library can be globally added to your Vue instance:
 <div id="app"></div>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script type="module">
-  import PicoVue from 'https://unpkg.com/picovue/picovue.js'
+  import PicoVue from 'https://unpkg.com/@ginger-tek/picovue/picovue.js'
 
   Vue.createApp()
     .use(PicoVue)
@@ -39,8 +39,8 @@ You can globally import only the components you need:
 <div id="app"></div>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script type="module">
-  import PvTable from 'https://unpkg.com/picovue/picovue.table.js'
-  import PvTabs from 'https://unpkg.com/picovue/picovue.tabs.js'
+  import PvTable from 'https://unpkg.com/@ginger-tek/picovue/picovue.table.js'
+  import PvTabs from 'https://unpkg.com/@ginger-tek/picovue/picovue.tabs.js'
 
   Vue.createApp()
     .use(PvTable)
@@ -51,7 +51,7 @@ You can globally import only the components you need:
 
 You can even import individual components only where you need them:
 ```js
-import { PvTable } from 'https://unpkg.com/picovue/picovue.table.js'
+import { PvTable } from 'https://unpkg.com/@ginger-tek/picovue/picovue.table.js'
 
 export default {
   components: { PvTable },
