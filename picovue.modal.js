@@ -69,7 +69,7 @@ export default {
 const sheet = new CSSStyleSheet()
 sheet.replaceSync(`
 dialog {
-  --pv-modal-distance: -1em;
+  --pv-modal-distance: 1em;
   --pv-modal-shrink: .95;
   --pv-modal-duration: .2s;
   animation: fadeout var(--pv-modal-duration) ease-out forwards;
