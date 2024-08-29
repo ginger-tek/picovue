@@ -1,4 +1,4 @@
-# PvToaster `<pv-toaster>`
+# PvToaster `<PvToaster>|<pv-toaster>`
 A toaster container component
 
 ## Props

@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvTab = {
   name: 'pv-tab-' + Date.now(),
   props: {
@@ -53,8 +55,8 @@ export const PvTabs = {
 
 export default {
   install(app) {
-    app.component('pv-tab', PvTab)
-    app.component('pv-tabs', PvTabs)
+    app.component('PvTab', PvTab)
+    app.component('PvTabs', PvTabs)
   }
 }
 

@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvToaster = {
   props: {
     id: {
@@ -46,7 +48,7 @@ export const appendToast = (body, opts = {}) => {
 
 export default {
   install(app) {
-    app.component('pv-toaster', PvToaster)
+    app.component('PvToaster', PvToaster)
     app.provide('pv_appendToast', appendToast)
   }
 }

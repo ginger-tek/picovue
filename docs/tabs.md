@@ -1,4 +1,4 @@
-# PvTabs `<pv-tabs>`
+# PvTabs `<PvTabs>|<pv-tabs>`
 A responsive tabs component.
 
 ## Props

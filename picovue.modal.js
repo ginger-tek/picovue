@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvModal = {
   props: {
     modelValue: {
@@ -60,7 +62,7 @@ export const PvModal = {
 
 export default {
   install(app) {
-    app.component('pv-modal', PvModal)
+    app.component('PvModal', PvModal)
   }
 }
 

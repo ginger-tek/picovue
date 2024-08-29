@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvTable = {
   props: {
     items: {

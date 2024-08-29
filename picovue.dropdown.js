@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvDropdown = {
   props: {
     modelValue: {
@@ -34,7 +36,7 @@ export const PvDropdown = {
 
 export default {
   install(app) {
-    app.component('pv-dropdown', PvDropdown)
+    app.component('PvDropdown', PvDropdown)
   }
 }
 

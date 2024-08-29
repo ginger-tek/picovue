@@ -1,4 +1,4 @@
-# PvModal `<pv-modal>`
+# PvModal `<PvModal>|<pv-modal>`
 An animated, modal component
 
 ## Props

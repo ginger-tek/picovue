@@ -1,4 +1,4 @@
-# PvAlert `<pv-alert>`
+# PvAlert `<PvAlert>|<pv-alert>`
 An alert component whose visibility is controlled by whether there's content within it.
 
 ## Props

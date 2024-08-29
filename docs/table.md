@@ -1,4 +1,4 @@
-# PvTable `<pv-table>`
+# PvTable `<PvTable>|<pv-table>`
 A responsive, generative table for rendering data, with custom field rendering and filtering.
 
 ### Props

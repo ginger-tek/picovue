@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvDarkMode = {
   props: {
     persist: {
@@ -45,7 +47,7 @@ export const PvDarkMode = {
 
 export default {
   install(app) {
-    app.component('pv-dark-mode', PvDarkMode)
+    app.component('PvDarkMode', PvDarkMode)
   }
 }
 

@@ -9,15 +9,14 @@ This is meant to be used with the [ESM/IIFE build version of Vue.js 3](https://w
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
-~~However, you can add PicoVue to an SFC transpiled Vue.js project by importing the ESM bundler from `vue` first to make it available to the library~~ This functionality does not actually work, apparently. Apparently, the `* as Vue` import is not implicitly inherited into the PicoVue import, therefore `Vue` doesn't exist within the modules. Will work on coming up with a solution for this soon:
+However, you can add PicoVue to an SFC transpiled Vue.js project. In this case, the ESM bundler from `vue` package is imported when the ESM/IIFE global is not available:
 ```js
 import { createApp } from 'vue'
-// import * as Vue from 'vue/dist/vue.esm-bundler.js'
-// import PicoVue from '@ginger-tek/picovue'
+import PicoVue from '@ginger-tek/picovue'
 import App from './app.vue'
 
 createApp(App)
-  // .use(PicoVue)
+  .use(PicoVue)
   .mount('#app')
 ```
 
@@ -61,10 +60,10 @@ export default {
 ```
 
 # Component Docs
-- [PvTable `<pv-table>`](/docs/table.md)
-- [PvModal `<pv-modal>`](/docs/modal.md)
-- [PvDropdown `<pv-dropdown>`](/docs/dropdown.md)
-- [PvToaster `<pv-toaster>`](/docs/toaster.md)
-- [PvDarkMode `<pv-dark-mode>`](/docs/dark-mode.md)
-- [PvTabs `<pv-tabs>` + PvTab `<pv-tab>`](/docs/tabs.md)
-- [PvAlert `<pv-alert>`](/docs/alert.md)
+- [PvTable](/docs/table.md)
+- [PvModal](/docs/modal.md)
+- [PvDropdownown](/docs/dropdown.md)
+- [PvToasterer](/docs/toaster.md)
+- [PvDarkModemode](/docs/dark-mode.md)
+- [PvTabs](/docs/tabs.md)
+- [PvAlert](/docs/alert.md)

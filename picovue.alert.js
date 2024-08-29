@@ -1,3 +1,5 @@
+window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+
 export const PvAlert = {
     props: {
       type: {
@@ -12,7 +14,7 @@ export const PvAlert = {
 
   export default {
     install(app) {
-      app.component('pv-alert', PvAlert)
+      app.component('PvAlert', PvAlert)
     }
   }
   

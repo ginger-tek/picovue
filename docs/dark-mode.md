@@ -1,4 +1,4 @@
-# PvDarkMode `<pv-dark-mode>`
+# PvDarkMode `<PvDarkMode>|<pv-dark-mode>`
 A toggle for changing the page theme between dark and light, using Pico's [`data-theme`](https://picocss.com/docs/color-schemes#usage) attribute on the `<html>` element.
 
 ## Props

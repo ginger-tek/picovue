@@ -1,4 +1,4 @@
-# PvDropdown `<pv-dropdown>`
+# PvDropdown `<PvDropdown>|<pv-dropdown>`
 An data-driven dropdown component, which can be used for selection or navigation
 
 ## Props
