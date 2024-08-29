@@ -69,79 +69,62 @@ export default {
 const sheet = new CSSStyleSheet()
 sheet.replaceSync(`
 dialog {
-  --pv-modal-distance: -2em;
+  --pv-modal-distance: -1em;
+  --pv-modal-shrink: .95;
   --pv-modal-duration: .2s;
-  animation: fade-out-dialog var(--pv-modal-duration) ease-out;
-}
-dialog > article {
-  animation: fade-out-article var(--pv-modal-duration) ease-out;
+  animation: fadeout var(--pv-modal-duration) ease-out forwards;
 }
 dialog[open] {
-  animation: fade-in-dialog var(--pv-modal-duration) ease-out;
+  animation: fadein var(--pv-modal-duration) ease-in forwards;
 }
-dialog[open] > article {
-  animation: fade-in-article var(--pv-modal-duration) ease-out;
+dialog>article {
+  animation: slidedown var(--pv-modal-duration) ease-out forwards;
 }
-dialog[open]::backdrop {
-  animation: backdrop-fade-in var(--pv-modal-duration) ease-in forwards;
+dialog[open]>article {
+  animation: slideup var(--pv-modal-duration) ease-in forwards;
 }
 dialog article > header .close {
   cursor: pointer;
 }
-@keyframes fade-in-dialog {
+@keyframes fadein {
   0% {
     opacity: 0;
-    top: var(--pv-modal-distance);
     display: none;
   }
   100% {
     opacity: 1;
-    top: 0;
     display: flex;
   }
 }
-@keyframes fade-in-article {
-  0% {
-    opacity: 0;
-    top: var(--pv-modal-distance);
-    display: none;
-  }
-  100% {
-    opacity: 1;
-    top: 0;
-    display: block;
-  }
-}
-@keyframes fade-out-dialog {
+@keyframes fadeout {
   0% {
     opacity: 1;
-    top: 0;
     display: flex;
   }
   100% {
     opacity: 0;
-    top: var(--pv-modal-distance);
     display: none;
   }
 }
-@keyframes fade-out-article {
+@keyframes slideup {
   0% {
-    opacity: 1;
-    top: 0;
-    display: block;
+    margin-top: var(--pv-modal-distance);
+    transform: scale(var(--pv-modal-shrink));
   }
   100% {
-    opacity: 0;
-    top: var(--pv-modal-distance);
-    display: none;
+    margin-top: 0;
+    transform: scale(1);
   }
 }
-@keyframes backdrop-fade-in {
+@keyframes slidedown {
   0% {
-    background-color: rgb(0 0 0 / 0);
+    margin-top: 0;
+    transform: scale(1);
   }
+
   100% {
-    background-color: rgb(0 0 0 / 0.25);
+    margin-top: var(--pv-modal-distance);
+    transform: scale(var(--pv-modal-shrink));
   }
 }
 `)
