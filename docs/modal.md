@@ -5,10 +5,10 @@ An animated, modal component
 |Name|Type|Default|Details|
 |---|---|---|---|
 |`v-model`|Boolean|`false`|Binds a boolean variable for opening and closing the modal|
-|`title`|String|`'Modal'`|The text to be shown in the header of the modal. Can include HTML|
 |`hide-close`|Boolean|`false`|Toggles showing the close ("X") button icon in the modal header; useful for when you have your own close button within|
 
 ## Slots
 |Name|Details|
 |---|---|
+|`header`|The text or html to be shown in the header of the modal. Default value is `Modal`|
 |`default`|The content of the modal body|

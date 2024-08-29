@@ -6,10 +6,6 @@ export const PvModal = {
       type: Boolean,
       default: false
     },
-    title: {
-      type: String,
-      default: 'Modal'
-    },
     hideClose: {
       type: Boolean,
       default: false
@@ -20,7 +16,9 @@ export const PvModal = {
     <article>
       <header>
         <button v-if="!hideClose" aria-label="Close" @click="closeModal" rel="prev"></button>
-        <h5 v-html="title"></h5>
+        <div>
+          <slot name="header">Modal</slot>
+        </div>
       </header>
       <slot></slot>
     </article>
