@@ -82,9 +82,9 @@ sheet.replaceSync(`
   margin: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  background: var(--pico-card-border-color);
   border-color: var(--pico-accordion-border-color);
   color: var(--pico-contrast);
+  padding: calc(var(--pico-spacing) / 1.5);
   min-width: 100px;
 }
 .pv-tabs header ul li:disabled {
@@ -93,7 +93,12 @@ sheet.replaceSync(`
 .pv-tabs header ul li.active {
   background: var(--pico-card-background-color);
   border-bottom-color: transparent;
-  font-weight: bold;
+}
+:where([data-theme=light], :root:not([data-theme=dark])) .pv-tabs header ul li {
+  background: var(--pico-card-border-color);
+}
+:where([data-theme=dark], :root:not([data-theme=light])) .pv-tabs header ul li {
+  background: var(--pico-dropdown-hover-background-color);
 }
 `)
 document.adoptedStyleSheets.push(sheet)

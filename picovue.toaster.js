@@ -121,29 +121,36 @@ sheet.replaceSync(`
   opacity: 1;
 }
 .pv-toaster .toast.success {
-  background: var(--pico-form-element-valid-border-color);
+  background: #398712;
   color: white;
 }
 .pv-toaster .toast.error {
-  background: var(--pico-form-element-invalid-border-color);
+  background: #D93526;
   color: white;
 }
 .pv-toaster .toast.info {
-  background: var(--pico-accordion-active-summary-color);
+  background: #058686;
   color: white;
 }
 .pv-toaster .toast .close {
   float: right;
-  display: block;
-  width: 1rem;
-  height: 1rem;
+  margin: 0;
   margin-left: var(--pico-spacing);
-  background-image: var(--pico-icon-close);
-  background-position: center;
-  background-size: auto 1rem;
-  background-repeat: no-repeat;
-  background-color: transparent;
+  padding: 0;
+  transition: opacity var(--pico-transition);
+  opacity: .5;
   cursor: pointer;
+}
+.pv-toaster .toast .close:before {
+  display: block;
+  content: '\u00D7';
+  font-size: 1.45rem;
+  line-height: 1rem;
+  width: 1rem;
+  height: 1rem;  
+}
+.pv-toaster .toast .close:hover {
+  opacity: .9;
 }
 `)
 document.adoptedStyleSheets.push(sheet)

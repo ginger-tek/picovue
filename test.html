@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico/css/pico.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <pv-tabs stretch>
+      <pv-tab title="First">
+        asdfadfasdfas
+      </pv-tab>
+      <pv-tab title="Second">
+        sdfgsdfgsdfgsdgfdsfg
+      </pv-tab>
+      <pv-tab title="Third">
+        ghdfhgdfhdfghdf
+      </pv-tab>
+      <pv-tab title="Fourth">
+        jrytukrthjrtyjrtyjrety
+      </pv-tab>
+      <pv-tab title="Fifth">
+        fghjfdgh
+      </pv-tab>
+    </pv-tabs>
+    <button @click="appendToast('sdfgsdfgsdf', { type: 'info', stay: true })">Toast</button>
+    <pv-dark-mode></pv-dark-mode>
+    <pv-toaster></pv-toaster>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="module">
+    import PicoVue from '/picovue.js'
+
+    Vue.createApp({
+      setup() {
+        const appendToast = Vue.inject('pv_appendToast')
+
+        return { appendToast }
+      }
+    })
+      .use(PicoVue)
+      .mount('#app')
+  </script>
+</body>
+
+</html>
