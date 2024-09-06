@@ -1,6 +1,6 @@
 {
   "name": "@ginger-tek/picovue",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Vue.js 3 + Pico CSS 2",
   "main": "picovue.js",
   "scripts": {
