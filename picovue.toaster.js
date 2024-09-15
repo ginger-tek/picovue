@@ -21,7 +21,7 @@ export const PvToaster = {
       }
     }
   },
-  template: `<div :id="id" :class="['pv-toaster', position]"></div>`,
+  template: `<div :id="id" popover="manual" style="width:var(--pv-toaster-width)" popovertargetaction="show" :class="['pv-toaster', position]"></div>`,
 }
 
 const closeToast = (e) => {
@@ -42,6 +42,7 @@ export const appendToast = (body, opts = {}) => {
   <div>${body}</div>`
   toast.querySelector('.close')?.addEventListener('click', ev => closeToast(ev.currentTarget.parentElement))
   document.getElementById(opts.id)?.appendChild(toast)
+  document.getElementById(opts.id)?.showPopover()
   setTimeout(() => toast.classList.add('show'), 1)
   if (!opts.stay) setTimeout(() => closeToast(toast), opts.dismissAfter * 1000)
 }
@@ -56,37 +57,45 @@ export default {
 const sheet = new CSSStyleSheet()
 sheet.replaceSync(`
 .pv-toaster {
-  position: fixed;
-  z-index: 10000;
   max-height: 50dvh;
   overflow-y: auto;
   overflow-x: hidden;
-  --pv-toaster-width: 400px;
+  border: none;
+  background: transparent;
+  --pv-toaster-width: 425px;
+}
+[popover]::backdrop {
+  display: none;
 }
 .pv-toaster:not(:empty) {
   padding: 1rem;
 }
 .pv-toaster.top-center {
-  top: 0;
+  margin-inline: auto;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .pv-toaster.top-left {
-  top: 0;
-  left: 0;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .pv-toaster.top-right {
-  top: 0;
-  right: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .pv-toaster.bottom-center {
-  bottom: 0;
+  margin-inline: auto;
+  margin-bottom: 0;
 }
 .pv-toaster.bottom-left {
-  bottom: 0;
-  left: 0;
+  margin-left: 0;
+  margin-bottom: 0;
 }
 .pv-toaster.bottom-right {
-  bottom: 0;
-  right: 0;
+  margin-right: 0;
+  margin-bottom: 0;
 }
 .pv-toaster .toast {
   display: block;

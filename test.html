@@ -27,8 +27,9 @@
         fghjfdgh
       </pv-tab>
     </pv-tabs>
-    <button @click="appendToast('sdfgsdfgsdf', { type: 'info', stay: true })">Toast</button>
+    <button @click="appendToast('sdfgsdfgsdf', { type: 'info' })">Toast</button>
     <pv-dark-mode></pv-dark-mode>
+    <pv-modal v-model="modal" @opened="appendToast('test')"></pv-modal>
     <pv-toaster></pv-toaster>
   </div>
   <script src="https://unpkg.com/vue"></script>
@@ -38,8 +39,14 @@
     Vue.createApp({
       setup() {
         const appendToast = Vue.inject('pv_appendToast')
+        const modal = Vue.ref(false)
 
-        return { appendToast }
+        Vue.onMounted(() => {
+          modal.value = true
+          setTimeout(() => appendToast('dfgsfgdf'), 2000)
+        })
+
+        return { appendToast, modal }
       }
     })
       .use(PicoVue)
