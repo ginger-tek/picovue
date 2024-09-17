@@ -1,4 +1,4 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+import { reactive, watch, computed } from 'vue'
 
 export const PvTable = {
   props: {
@@ -79,13 +79,13 @@ export const PvTable = {
     </table>
   </div>`,
   setup(props) {
-    const filterCols = Vue.reactive({})
-    const sorting = Vue.reactive({
+    const filterCols = reactive({})
+    const sorting = reactive({
       dir: null,
       col: null
     })
 
-    const cols = Vue.computed(() => {
+    const cols = computed(() => {
       return (props.fields.length ? props.fields : Object.keys(props.items[0] || {})).map(c => ({
         name: c.name || c,
         label: c.label || (c.name || c).split(/_|-|(?=[A-Z])/).map(w => w[0].toUpperCase() + w.substring(1)).join(' '),
@@ -93,7 +93,7 @@ export const PvTable = {
       }))
     })
 
-    const rows = Vue.computed(() => {
+    const rows = computed(() => {
       const filters = Object.keys(filterCols)
       const results = props.filter && filters.length > 0
         ? props.items.filter(i => filters.map(f => i[f]?.toString()?.toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
@@ -119,7 +119,7 @@ export const PvTable = {
       return n.split(/_|-|(?=[A-Z])/).map(w => w.toLowerCase()).join('-')
     }
 
-    Vue.watch(() => filterCols, (n, _o) => {
+    watch(() => filterCols, (n, _o) => {
       Object.keys(n).forEach(k => {
         if (filterCols[k] == '' || filterCols[k] == null) delete filterCols[k]
       })
@@ -133,12 +133,6 @@ export const PvTable = {
       sortCol,
       toAttributeName
     }
-  }
-}
-
-export default {
-  install(app) {
-    app.component('pv-table', PvTable)
   }
 }
 

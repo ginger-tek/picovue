@@ -1,4 +1,25 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+export const closeToast = (e) => {
+  const el = e.target || e
+  el?.classList.remove('show')
+  setTimeout(() => el?.remove(), 201)
+}
+
+export const appendToast = (body, opts = {}) => {
+  opts.dismissAfter ??= 3
+  opts.type ??= null
+  opts.stay ??= false
+  opts.id ??= 'pv-toaster'
+  const toast = document.createElement('div')
+  toast.classList.add('toast')
+  if (opts.type) toast.classList.add(opts.type)
+  toast.innerHTML = `<div aria-label="Close" class="close"></div>
+  <div>${body}</div>`
+  toast.querySelector('.close')?.addEventListener('click', ev => closeToast(ev.currentTarget.parentElement))
+  document.getElementById(opts.id)?.appendChild(toast)
+  document.getElementById(opts.id)?.showPopover()
+  setTimeout(() => toast.classList.add('show'), 1)
+  if (!opts.stay) setTimeout(() => closeToast(toast), opts.dismissAfter * 1000)
+}
 
 export const PvToaster = {
   props: {
@@ -22,36 +43,6 @@ export const PvToaster = {
     }
   },
   template: `<div :id="id" popover="manual" style="width:var(--pv-toaster-width)" popovertargetaction="show" :class="['pv-toaster', position]"></div>`,
-}
-
-const closeToast = (e) => {
-  const el = e.target || e
-  el?.classList.remove('show')
-  setTimeout(() => el?.remove(), 201)
-}
-
-export const appendToast = (body, opts = {}) => {
-  opts.dismissAfter ??= 5
-  opts.type ??= null
-  opts.stay ??= false
-  opts.id ??= 'pv-toaster'
-  const toast = document.createElement('div')
-  toast.classList.add('toast')
-  if (opts.type) toast.classList.add(opts.type)
-  toast.innerHTML = `<div aria-label="Close" class="close"></div>
-  <div>${body}</div>`
-  toast.querySelector('.close')?.addEventListener('click', ev => closeToast(ev.currentTarget.parentElement))
-  document.getElementById(opts.id)?.appendChild(toast)
-  document.getElementById(opts.id)?.showPopover()
-  setTimeout(() => toast.classList.add('show'), 1)
-  if (!opts.stay) setTimeout(() => closeToast(toast), opts.dismissAfter * 1000)
-}
-
-export default {
-  install(app) {
-    app.component('PvToaster', PvToaster)
-    app.provide('pv_appendToast', appendToast)
-  }
 }
 
 const sheet = new CSSStyleSheet()

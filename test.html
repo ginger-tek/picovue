@@ -28,20 +28,29 @@
       </pv-tab>
     </pv-tabs>
     <button @click="appendToast('sdfgsdfgsdf', { type: 'info' })">Toast</button>
-    <pv-dark-mode></pv-dark-mode>
     <pv-modal v-model="modal" @opened="appendToast('test')"></pv-modal>
     <pv-toaster></pv-toaster>
   </div>
-  <script src="https://unpkg.com/vue"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue/dist/vue.esm-browser.js",
+        "@ginger-tek/picovue/": "./"
+      }
+    }
+  </script>
   <script type="module">
-    import PicoVue from '/picovue.js'
+    import { createApp, ref, onMounted, inject, provide } from 'vue'
+    import { PvTabs, PvTab } from '@ginger-tek/picovue/picovue.tabs.js'
+    import { PvToaster, appendToast } from '@ginger-tek/picovue/picovue.toaster.js'
+    import { PvModal } from '@ginger-tek/picovue/picovue.modal.js'
 
-    Vue.createApp({
+    createApp({
+      components: { PvTabs, PvTab, PvToaster, PvModal },
       setup() {
-        const appendToast = Vue.inject('pv_appendToast')
-        const modal = Vue.ref(false)
+        const modal = ref(false)
 
-        Vue.onMounted(() => {
+        onMounted(() => {
           modal.value = true
           setTimeout(() => appendToast('dfgsfgdf'), 2000)
         })
@@ -49,7 +58,6 @@
         return { appendToast, modal }
       }
     })
-      .use(PicoVue)
       .mount('#app')
   </script>
 </body>

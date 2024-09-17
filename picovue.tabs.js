@@ -1,4 +1,4 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+import { ref, useSlots, onMounted } from 'vue'
 
 export const PvTab = {
   name: 'pv-tab-' + Date.now(),
@@ -37,11 +37,11 @@ export const PvTabs = {
     </keep-alive>
   </article>`,
   setup() {
-    const slots = Vue.useSlots()
-    const active = Vue.ref(0)
-    const persisted = Vue.ref([])
+    const slots = useSlots()
+    const active = ref(0)
+    const persisted = ref([])
 
-    Vue.onMounted(() => {
+    onMounted(() => {
       persisted.value = slots.default().filter(s => s.props.hasOwnProperty('persist')).map(s => s.type.name)
     })
 
@@ -50,13 +50,6 @@ export const PvTabs = {
       persisted,
       slots
     }
-  }
-}
-
-export default {
-  install(app) {
-    app.component('PvTab', PvTab)
-    app.component('PvTabs', PvTabs)
   }
 }
 

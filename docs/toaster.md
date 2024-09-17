@@ -8,15 +8,15 @@ A toaster container component
 |`position`|String|`'top-center'`|Sets the position of the toaster container. Valid values include: `top-left`, `top-center`, `top-right`, `bottom-left`, |
 
 ## Methods
-### `pv_appendToast(body, opts = { dismissAfter = 5, stay = false, type = null, id = 'pv-toaster' })`
+### `appendToast(body, options = { dismissAfter = 3, stay = false, type = null, id = 'pv-toaster' })`
 Appends new toasts to the target toaster container. To access this method, use Vue's [`inject()`](https://vuejs.org/guide/components/provide-inject#inject) method to bring it into your context:
 ```js
-const appendToast = Vue.inject('pv_appendToast')
+import { appendToast } from '.../picovue.toaster.js'
 
 appendToast('Hello!', { type: 'success' })
 ```
 
-#### Parameter Properties
+#### Options Properties
 |Name|Type|Default|Details|
 |---|---|---|---|
 |`body`|String|Required|The content of the toast|

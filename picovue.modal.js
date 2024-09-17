@@ -1,4 +1,4 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+import { ref, watch, nextTick, onMounted } from 'vue'
 
 export const PvModal = {
   props: {
@@ -24,14 +24,14 @@ export const PvModal = {
     </article>
   </dialog>`,
   setup(props, { emit }) {
-    const modal = Vue.ref(null)
+    const modal = ref(null)
     const doc = document.documentElement
 
     function closeModal() {
       modal.value?.close()
       doc.classList.remove('modal-is-open')
       emit('update:modelValue', false)
-      Vue.nextTick(() => emit('closed'))
+      nextTick(() => emit('closed'))
     }
 
     function openModal() {
@@ -39,15 +39,15 @@ export const PvModal = {
       modal.value?.focus()
       doc.classList.add('modal-is-open')
       emit('update:modelValue', true)
-      Vue.nextTick(() => emit('opened'))
+      nextTick(() => emit('opened'))
     }
 
-    Vue.watch(() => props.modelValue, (n, _o) => {
+    watch(() => props.modelValue, (n, _o) => {
       if (n) openModal()
       else closeModal()
     })
 
-    Vue.onMounted(() => {
+    onMounted(() => {
       modal.value.addEventListener('close', closeModal)
     })
 
@@ -55,12 +55,6 @@ export const PvModal = {
       modal,
       closeModal
     }
-  }
-}
-
-export default {
-  install(app) {
-    app.component('PvModal', PvModal)
   }
 }
 

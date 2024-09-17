@@ -1,4 +1,4 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+import { ref } from 'vue'
 
 export const PvDropdown = {
   props: {
@@ -19,7 +19,7 @@ export const PvDropdown = {
     </ul>
   </details>`,
   setup(_props, { emit }) {
-    const dropdown = Vue.ref(null)
+    const dropdown = ref(null)
 
     function selectItem(i) {
       if (!i.href)
@@ -31,12 +31,6 @@ export const PvDropdown = {
       dropdown,
       selectItem
     }
-  }
-}
-
-export default {
-  install(app) {
-    app.component('PvDropdown', PvDropdown)
   }
 }
 

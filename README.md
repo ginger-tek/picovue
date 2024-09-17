@@ -4,59 +4,46 @@
 </div>
 
 # How to use
-PicoVue is a drop-in component library of plain ES6 module Vue.js 3 files used for sprinkling in Pico-styled, Vue-driven interactivity to any web page.
-This is meant to be used with the [ESM/IIFE build version of Vue.js 3](https://www.npmjs.com/package/vue#which-dist-file-to-use), which can be added via script tag:
-```html
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-```
-However, you can add PicoVue to an SFC transpiled Vue.js project. In this case, the ESM bundler from `vue` package is imported when the ESM/IIFE global is not available:
+PicoVue is a component library of used for sprinkling in Pico-styled, Vue-driven interactivity to any web page or project.
+
+Each component file is a plain ES6 module that allows the same, simple code to be implemented in different types of Vue builds, such as with the esm-bundler build (Vite Project) or esm-browser build (Web browser).
+
+## Vite Project (SFC)
+To use PicoVue in a Vite project alongside Single File Components (SFC), `npm install @ginger-tek/picovue` and resolve the `vue` library to the ESM bundler instead by adding the following to your `vite.config.js`:
 ```js
-import { createApp } from 'vue'
-import PicoVue from '@ginger-tek/picovue'
-import App from './app.vue'
-
-createApp(App)
-  .use(PicoVue)
-  .mount('#app')
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js'
+    }
+  }
+})
 ```
 
-The library can be globally added to your Vue instance:
+## Browser + CDN (ESM)
+To use PicoVue directly in the browser without a build step, import the [ESM Browser version of Vue.js 3](https://www.npmjs.com/package/vue#which-dist-file-to-use) via an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) along with PicoVue:
 ```html
-<div id="app"></div>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script type="module">
-  import PicoVue from 'https://unpkg.com/@ginger-tek/picovue/picovue.js'
-
-  Vue.createApp()
-    .use(PicoVue)
-    .mount('#app')
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@latest/dist/vue.esm-browser.js",
+      "@ginger-tek/picovue/": "https://unpkg.com/@ginger-tek/picovue@latest/"
+    }
+  }
 </script>
 ```
+**Note the trailing slashes on the PicoVue import, which are used to [prefix](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap#mapping_path_prefixes) your individual component references**
 
-You can globally import only the components you need:
-```html
-<div id="app"></div>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script type="module">
-  import PvTable from 'https://unpkg.com/@ginger-tek/picovue/picovue.table.js'
-  import PvTabs from 'https://unpkg.com/@ginger-tek/picovue/picovue.tabs.js'
-
-  Vue.createApp()
-    .use(PvTable)
-    .use(PvTabs)
-    .mount('#app')
-</script>
-```
-
-You can even import individual components only where you need them:
+# Examples
+Once you have your setup configured, simply import the components you want to use:
 ```js
-import { PvTable } from 'https://unpkg.com/@ginger-tek/picovue/picovue.table.js'
-
-export default {
-  components: { PvTable },
-  template: ``,
-  setup() {}
-}
+import { PvTable } from '@ginger-tek/picovue/picovue.table.js'
+import { PvDarkMode } from '@ginger-tek/picovue/picovue.table.js'
+```
+```html
+<pv-table :items="..." />
+<pv-dark-mode />
 ```
 
 # Component Docs

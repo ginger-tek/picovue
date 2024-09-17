@@ -1,8 +1,7 @@
 {
   "name": "@ginger-tek/picovue",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Vue.js 3 + Pico CSS 2",
-  "main": "picovue.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

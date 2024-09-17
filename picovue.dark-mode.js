@@ -1,4 +1,4 @@
-window.Vue ??= require('vue/dist/vue.esm-bundler.js')
+import { ref, watch, onBeforeMount } from 'vue'
 
 export const PvDarkMode = {
   props: {
@@ -13,10 +13,10 @@ export const PvDarkMode = {
     <span :class="[theme]"></span>
   </label>`,
   setup(props) {
-    const theme = Vue.ref(null)
+    const theme = ref(null)
     const doc = document.documentElement
 
-    Vue.watch(() => theme.value, (n) => {
+    watch(() => theme.value, (n) => {
       if (getTheme() != n)
         doc.setAttribute('data-theme', n)
       else
@@ -32,7 +32,7 @@ export const PvDarkMode = {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
 
-    Vue.onBeforeMount(() => {
+    onBeforeMount(() => {
       if (localStorage.getItem('theme'))
         theme.value = localStorage.getItem('theme')
       else
@@ -42,12 +42,6 @@ export const PvDarkMode = {
     return {
       theme
     }
-  }
-}
-
-export default {
-  install(app) {
-    app.component('PvDarkMode', PvDarkMode)
   }
 }
 
