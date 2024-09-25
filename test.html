@@ -1,63 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico/css/pico.min.css">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tests</title>
+  <link href="https://unpkg.com/@picocss/pico" rel='stylesheet'>
 </head>
 
 <body>
   <div id="app" class="container">
-    <pv-tabs stretch>
+    <pv-dropdown v-model="selected" :items="['first', 'second']"></pv-dropdown>
+    <pv-multi-select v-model="selectedArr" :items="['first', 'second']">
+      <template #selected>{{ selectedArr.join(', ') }}</template>
+    </pv-multi-select>
+    <div>{{ selected }}</div>
+    <pv-table :items="[{id:1,name:'test'}]" filter bordered></pv-table>
+    <pv-modal v-model="show">
+      <button @click="appendToast('test')">Toast</button>
+    </pv-modal>
+    <pv-dark-mode></pv-dark-mode>
+    <button @click="show=true">Modal</button>
+    <pv-tabs>
       <pv-tab title="First">
-        asdfadfasdfas
+        <input>
       </pv-tab>
       <pv-tab title="Second">
-        sdfgsdfgsdfgsdgfdsfg
-      </pv-tab>
-      <pv-tab title="Third">
-        ghdfhgdfhdfghdf
-      </pv-tab>
-      <pv-tab title="Fourth">
-        jrytukrthjrtyjrtyjrety
-      </pv-tab>
-      <pv-tab title="Fifth">
-        fghjfdgh
+        <input>
       </pv-tab>
     </pv-tabs>
-    <button @click="appendToast('sdfgsdfgsdf', { type: 'info' })">Toast</button>
-    <pv-modal v-model="modal" @opened="appendToast('test')"></pv-modal>
     <pv-toaster></pv-toaster>
+    <div class="grid">
+      <button @click="appendToast('test', {type:'success'})">Toast</button>
+      <button @click="appendToast('test', {type:'info'})">Toast</button>
+      <button @click="appendToast('test', {type:'warning'})">Toast</button>
+      <button @click="appendToast('test', {type:'danger'})">Toast</button>
+    </div>
+    <pv-alert type="success">Success</pv-alert>
+    <pv-alert type="info">Info</pv-alert>
+    <pv-alert type="warning">Warning</pv-alert>
+    <pv-alert type="danger">Error</pv-alert>
   </div>
-  <script type="importmap">
-    {
-      "imports": {
-        "vue": "https://unpkg.com/vue/dist/vue.esm-browser.js",
-        "@ginger-tek/picovue/": "./"
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="/dist/picovue.global.js"></script>
   <script type="module">
-    import { createApp, ref, onMounted, inject, provide } from 'vue'
-    import { PvTabs, PvTab } from '@ginger-tek/picovue/picovue.tabs.js'
-    import { PvToaster, appendToast } from '@ginger-tek/picovue/picovue.toaster.js'
-    import { PvModal } from '@ginger-tek/picovue/picovue.modal.js'
+    const { appendToast } = PicoVue
 
-    createApp({
-      components: { PvTabs, PvTab, PvToaster, PvModal },
+    Vue.createApp({
       setup() {
-        const modal = ref(false)
-
-        onMounted(() => {
-          modal.value = true
-          setTimeout(() => appendToast('dfgsfgdf'), 2000)
-        })
-
-        return { appendToast, modal }
+        const show = Vue.ref(false)
+        const selected = Vue.ref(null)
+        const selectedArr = Vue.ref([])
+        return { show, selected, selectedArr, appendToast }
       }
     })
+      .use(PicoVue)
       .mount('#app')
   </script>
 </body>

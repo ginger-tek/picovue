@@ -1,10 +1,7 @@
 {
   "name": "@ginger-tek/picovue",
+  "description": "Pico CSS 2 + Vue 3",
   "version": "2.0.0",
-  "description": "Vue.js 3 + Pico CSS 2",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ginger-tek/picovue.git"
@@ -21,9 +18,22 @@
     "library"
   ],
   "author": "GingerTek",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "bugs": {
     "url": "https://github.com/ginger-tek/picovue/issues"
   },
-  "homepage": "https://github.com/ginger-tek/picovue#readme"
+  "homepage": "https://github.com/ginger-tek/picovue#readme",
+  "type": "module",
+  "main": "dist/picovue.global.js",
+  "exports": {
+    ".": "./src/"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "vite": "^5.4.6",
+    "vue": "^3.5.6"
+  }
 }
