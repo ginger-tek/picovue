@@ -26,7 +26,7 @@
   "type": "module",
   "main": "dist/picovue.global.js",
   "exports": {
-    ".": "./src/"
+    "./*": "./src/*"
   },
   "scripts": {
     "build": "vite build"
