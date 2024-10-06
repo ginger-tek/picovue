@@ -99,8 +99,11 @@ const items = [
   items="Array<Object>",
   fields="Array<Object|String>"
   filter="Switch"
+  filter-opts="Object"
+  sort="Switch"
   bordered="Switch"
   striped="Switch"
+  busy="Switch"
 />
 ```
 ## Attributes
@@ -111,6 +114,15 @@ const fields = [
   { name: 'property', label: 'Foobar' },
   { name: 'property', align: 'left|center|right' },
 ]
+```
+### Filter Options
+Provide auto-suggest to the filter input fields by setting the `datalist` option:
+```js
+const filterOpts = {
+  datalist: {
+    fieldName: ['value 1', 'value 2',]
+  }
+}
 ```
 ## Slots
 ```html

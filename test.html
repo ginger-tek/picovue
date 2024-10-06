@@ -15,7 +15,7 @@
       <template #selected>{{ selectedArr.join(', ') }}</template>
     </pv-multi-select>
     <div>{{ selected }}</div>
-    <pv-table :items="[{id:1,name:'test'}]" filter bordered></pv-table>
+    <pv-table :items="[{id:1,name:'test'}]" filter bordered sort></pv-table>
     <pv-modal v-model="show">
       <button @click="appendToast('test')">Toast</button>
     </pv-modal>

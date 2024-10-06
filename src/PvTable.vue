@@ -14,6 +14,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  sort: {
+    type: Boolean,
+    default: false
+  },
   filterOpts: {
     type: Object,
     default: {}
@@ -86,7 +90,7 @@ watch(() => filterCols, (n, _o) => {
         <tr>
           <th v-for="c in cols" :key="c.name">
             <div class="col-wrap">
-              <div v-if="filter">
+              <div v-if="filter" class="filter" :title="c.label">
                 <input v-model="filterCols[c.name]" type="text" :placeholder="c.label" :list="'dl' + c.name" />
                 <datalist v-if="filterOpts?.datalist && filterOpts.datalist[c.name]" :id="'dl' + c.name">
                   <option v-for="(o, ox) in filterOpts.datalist[c.name]" :key="'o' + ox">{{ o }}</option>
@@ -95,7 +99,7 @@ watch(() => filterCols, (n, _o) => {
               <span v-else :class="{ active: sorting.name == c.name }"
                 :style="{ 'text-align': c.align || 'inherit' }">{{
                   c.label }}</span>
-              <div class="sorter">
+              <div v-if="sort" class="sorter">
                 <div @click="sortCol(c.name, 1)"
                   :class="['sort asc', { active: sorting.name == c.name && sorting.dir == 1 }]">▲</div>
                 <div @click="sortCol(c.name, -1)"
@@ -144,9 +148,13 @@ watch(() => filterCols, (n, _o) => {
   margin-bottom: 0;
 }
 
-.pv-table table thead th :where(input, select) {
+.pv-table table thead th .col-wrap .filter :where(input, select) {
   margin-bottom: 0;
   --pico-line-height: .75;
+}
+
+.pv-table table thead th .col-wrap .filter {
+  flex: 1;
 }
 
 .pv-table.bordered {
