@@ -133,7 +133,7 @@ const filterOpts = {
 NOTE: If a property is in `camelCase`, the template name must use `kebab-case` to match properly
 ```html
 <template #some-prop="{someProp}">
-  {{ property }}
+  {{ someProp }}
 </template>
 ```
 
