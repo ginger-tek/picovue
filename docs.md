@@ -146,6 +146,11 @@ NOTE: If a property is in `camelCase`, the template name must use `kebab-case` t
 </PvTabs>
 ```
 
+# PvTags
+```html
+<PvTags v-model="value"></PvTags>
+```
+
 # PvToaster
 ```html
 <PvToaster
