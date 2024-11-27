@@ -1,7 +1,7 @@
 {
   "name": "@ginger-tek/picovue",
   "description": "Pico CSS 2 + Vue 3",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "main": "src/index.js",
   "module": "dist/picovue.global.js",
   "unpkg": "dist/picovue.global.js",
