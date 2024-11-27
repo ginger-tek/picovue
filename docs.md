@@ -172,6 +172,8 @@ NOTE: If a property is in `camelCase`, the template name must use `kebab-case` t
 ```js
 import { appendToast } from 'PvToaster.vue'
 // or
+const appendToast = inject('appendToast')
+// or
 const { appendToast } = PicoVue
 // or
 PicoVue.appendToast()
