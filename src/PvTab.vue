@@ -1,9 +1,5 @@
 <script setup>
-defineOptions({
-  options: {
-    name: 'PvTab' + Date.now()
-  }
-})
+import { onUnmounted } from 'vue'
 
 const props = defineProps({
   selected: {
@@ -15,6 +11,8 @@ const props = defineProps({
     default: false
   }
 })
+
+onUnmounted(console.log('unmounted'))
 </script>
 
 <template>
