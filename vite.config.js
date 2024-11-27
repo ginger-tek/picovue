@@ -1,38 +1,36 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import fs from 'fs'
-import pkg from './package.json'
+import pkg from './package.json' with { type: 'json' }
+import fs from 'node:fs'
 
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     {
-      name: 'pre-build',
+      name: 'post-build',
       closeBundle() {
         const path = './dist/picovue.global.js'
-        const meta = `/** picovue v${pkg.version} (c) GingerTek **/`
-        const styles = fs.readFileSync('./dist/style.css', 'utf-8')
-        const css = `var css=new CSSStyleSheet();css.replaceSync(\`${styles.trim()}\`);document.adoptedStyleSheets.push(css);`
-        fs.writeFileSync(path, `${meta}\n${css}\n${fs.readFileSync(path, 'utf-8')}`)
-        fs.unlinkSync('./dist/style.css')
+        const meta = `/** PicoVue v${pkg.version} (c) GingerTek **/`
+        fs.writeFileSync(path, `${meta}\n${fs.readFileSync(path, 'utf-8')}`)
       }
     }
   ],
   build: {
-    sourcemap: true,
+    // sourcemap: true,
+    cssCodeSplit: true,
     lib: {
+      entry: './src/index.js',
       name: 'PicoVue',
-      fileName: () => `picovue.global.js`,
-      entry: './src/main.js',
-      formats: ['iife']
+      fileName: (a) => a == 'umd' ? 'picovue.global.js' : `picovue.${a}.js`,
+      formats: ['umd']
     },
     rollupOptions: {
-      input: './src/main.js',
       external: ['vue'],
       output: {
         globals: {
           vue: 'Vue'
-        }
+        },
       }
     }
   }

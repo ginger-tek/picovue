@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tests</title>
+  <link href="https://unpkg.com/@picocss/pico" rel='stylesheet'>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <pv-dropdown v-model="selected" :items="['first', 'second']"></pv-dropdown>
+    <pv-multi-select v-model="selectedArr" :items="['first', 'second']">
+      <template #selected>{{ selectedArr.join(', ') }}</template>
+    </pv-multi-select>
+    <pv-tags v-model="tags"></pv-tags>
+    {{ tags }}
+    <div>{{ selected }}</div>
+    <pv-table :items="[{id:1,name:'test'}]" filter bordered sort></pv-table>
+    <pv-modal v-model="show">
+      <button @click="appendToast('test')">Toast</button>
+    </pv-modal>
+    <pv-dark-mode></pv-dark-mode>
+    <button @click="show=true">Modal</button>
+    <pv-tabs>
+      <pv-tab persist>
+        <template #title>
+          <i>First</i>
+        </template>
+        <input>
+      </pv-tab>
+      <pv-tab>
+        <template #title>
+          {{ tags.join(',') }}
+        </template>
+        <textarea></textarea>
+        <p>fgsfjlfkgljlg;sj;kldf</p>
+        <p>fgsfjlfkgljlg;sj;kldf</p>
+        <p>fgsfjlfkgljlg;sj;kldf</p>
+        <p>fgsfjlfkgljlg;sj;kldf</p>
+      </pv-tab>
+    </pv-tabs>
+    <pv-toaster></pv-toaster>
+    <div class="grid">
+      <button @click="appendToast('test', {type:'success'})">Toast</button>
+      <button @click="appendToast('test', {type:'info'})">Toast</button>
+      <button @click="appendToast('test', {type:'warning'})">Toast</button>
+      <button @click="appendToast('test', {type:'danger'})">Toast</button>
+    </div>
+    <pv-alert type="success">Success</pv-alert>
+    <pv-alert type="info">Info</pv-alert>
+    <pv-alert type="warning">Warning</pv-alert>
+    <pv-alert type="danger">Error</pv-alert>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.global.js"></script>
+  <script src="/dist/picovue.global.js"></script>
+  <script type="module">
+
+    Vue.createApp({
+      setup() {
+        const appendToast = Vue.inject('appendToast')
+        const show = Vue.ref(false)
+        const selected = Vue.ref(null)
+        const selectedArr = Vue.ref([])
+        const tags = Vue.ref(['tag','tesdfsdf'])
+
+        return { show, selected, selectedArr, appendToast, tags }
+      }
+    })
+      .use(PicoVue)
+      .mount('#app')
+  </script>
+</body>
+
+</html>

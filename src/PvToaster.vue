@@ -1,11 +1,11 @@
 <script>
-export const closeToast = (e) => {
+export const removeToast = (e) => {
   const el = e.target || e
-  el?.classList.remove('show')
+  el.classList.remove('show')
   setTimeout(() => {
-    const parent = el?.parentElement
-    el?.remove()
-    if (!parent?.hasChildNodes()) parent.hidePopover()
+    const parent = el.parentElement
+    if (parent && !parent.hasChildNodes()) parent.hidePopover()
+    el.remove()
   }, 201)
 }
 
@@ -15,15 +15,16 @@ export const appendToast = (body, opts = {}) => {
   opts.stay ??= false
   opts.id ??= 'pv-toaster'
   const toaster = document.getElementById(opts.id)
+  if (toaster) throw new Error('Toaster not found')
   const toast = document.createElement('div')
   toast.classList.add('toast')
   if (opts.type) toast.classList.add(opts.type)
   toast.innerHTML = `<div aria-label="Close" class="close"></div><div>${body}</div>`
-  toast.querySelector('.close')?.addEventListener('click', ev => closeToast(ev.currentTarget.parentElement))
-  toaster?.appendChild(toast)
-  toaster?.showPopover()
+  toast.querySelector('.close')?.addEventListener('click', ev => removeToast(ev.currentTarget.parentElement))
+  toaster.appendChild(toast)
+  toaster.showPopover()
   setTimeout(() => toast.classList.add('show'), 1)
-  if (!opts.stay) setTimeout(() => closeToast(toast), opts.dismissAfter * 1000)
+  if (!opts.stay) setTimeout(() => removeToast(toast), opts.dismissAfter * 1000)
 }
 </script>
 
@@ -80,6 +81,10 @@ onMounted(() => {
 
 [popover]::backdrop {
   display: none;
+}
+
+.pv-toaster:empty {
+  padding: 0;
 }
 
 .pv-toaster:not(:empty) {

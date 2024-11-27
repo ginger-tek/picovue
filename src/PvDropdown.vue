@@ -24,7 +24,7 @@ function selectItem(i) {
     </summary>
     <ul>
       <li v-for="(i, x) in items" :key="'di' + x">
-        <a @click="selectItem(i)" :href="i?.href">{{ i.text || i }}</a>
+        <a @click="selectItem(i)" :href="i.href || '#'">{{ i.text || i }}</a>
       </li>
     </ul>
   </details>

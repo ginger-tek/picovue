@@ -5,29 +5,28 @@ const props = defineProps({
   stretch: {
     type: Boolean,
     default: false
-  },
-  persist: {
-    type: Boolean,
-    default: false
   }
 })
 
 const slots = useSlots().default()
-const active = ref(slots[0])
+const persisted = ref(slots.filter(s => s.props?.hasOwnProperty('persist')).map(s => s.type.__name))
+const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots[0])
 </script>
 
 <template>
+  {{ persisted }}
   <article class="pv-tabs">
     <header>
       <ul :class="{ stretch }">
         <li v-for="(s, i) in slots" :key="'t' + i" @click="active = s"
-          :class="['tab-btn secondary', { active: active == s }]" role="button" :disabled="s.props.disabled">
-          {{ s.props.title }}
+          :class="['tab-btn secondary', { active: active == s }]" role="button"
+          :disabled="s.props?.disabled">
+          <component :is="s.children.title()[0]"></component>
         </li>
       </ul>
     </header>
-    <KeepAlive :include="persist ? 'PvTab' : 'none'">
-      <component :is="active" :key="active"></component>
+    <KeepAlive :include="persisted">
+      <component :is="active.children.default" :key="active"></component>
     </KeepAlive>
   </article>
 </template>

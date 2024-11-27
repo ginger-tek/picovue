@@ -45,7 +45,7 @@ const sorting = reactive({
 const cols = computed(() => {
   return (props.fields.length ? props.fields : Object.keys(props.items[0] || {})).map(c => ({
     name: c.name || c,
-    label: c.label || (c.name || c).split(/_|-|(?=[A-Z])/).map(w => w[0].toUpperCase() + w.substring(1)).join(' '),
+    label: c.label || (c.name || c).split(/_|-|(?=[A-Z])/).filter(Boolean).map(w => w[0].toUpperCase() + w.substring(1)).join(' '),
     align: c.align || false
   }))
 })
@@ -53,7 +53,7 @@ const cols = computed(() => {
 const rows = computed(() => {
   const filters = Object.keys(filterCols)
   const results = props.filter && filters.length > 0
-    ? props.items.filter(i => filters.map(f => i[f]?.toString()?.toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
+    ? props.items.filter(i => filters.map(f => i[f].toString().toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
     : props.items
   return results.toSorted((a, b) => {
     if (a[sorting.name] > b[sorting.name]) return 1 * sorting.dir
@@ -92,7 +92,7 @@ watch(() => filterCols, (n, _o) => {
             <div class="col-wrap">
               <div v-if="filter" class="filter" :title="c.label">
                 <input v-model="filterCols[c.name]" type="text" :placeholder="c.label" :list="'dl' + c.name" />
-                <datalist v-if="filterOpts?.datalist && filterOpts.datalist[c.name]" :id="'dl' + c.name">
+                <datalist v-if="filterOpts.datalist && filterOpts.datalist[c.name]" :id="'dl' + c.name">
                   <option v-for="(o, ox) in filterOpts.datalist[c.name]" :key="'o' + ox">{{ o }}</option>
                 </datalist>
               </div>

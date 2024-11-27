@@ -13,15 +13,15 @@ const emit = defineEmits(['opened', 'closed'])
 const doc = document.documentElement
 
 function closeModal() {
-  modal.value?.close()
+  modal.value.close()
   doc.classList.remove('modal-is-open')
   emit('update:modelValue', false)
   nextTick(() => emit('closed'))
 }
 
 function openModal() {
-  modal.value?.showModal()
-  modal.value?.focus()
+  modal.value.showModal()
+  modal.value.focus()
   doc.classList.add('modal-is-open')
   emit('update:modelValue', true)
   nextTick(() => emit('opened'))
