@@ -15,7 +15,7 @@ export const appendToast = (body, opts = {}) => {
   opts.stay ??= false
   opts.id ??= 'pv-toaster'
   const toaster = document.getElementById(opts.id)
-  if (toaster) throw new Error('Toaster not found')
+  if (!toaster) throw new Error('Toaster not found')
   const toast = document.createElement('div')
   toast.classList.add('toast')
   if (opts.type) toast.classList.add(opts.type)
