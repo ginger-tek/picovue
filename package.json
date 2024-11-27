@@ -1,5 +1,5 @@
 {
-  "name": "picovue",
+  "name": "@ginger-tek/picovue",
   "description": "Pico CSS 2 + Vue 3",
   "version": "2.1.0",
   "main": "dist/index.js",
