@@ -97,7 +97,7 @@ watch(() => tags.value, () => model.value = Array.from(tags.value), { deep: true
   padding: 0 .5em;
   border-radius: var(--pico-border-radius);
   background: var(--pico-primary-background);
-  color: var(--pico-primary-color);
+  color: var(--pico-primary-inverse);
 }
 
 .tag-pill .close {
