@@ -18,7 +18,7 @@ const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots
       <ul :class="{ stretch }">
         <li v-for="(s, i) in slots" :key="'t' + i" @click="active = s"
           :class="['tab-btn secondary', { active: active == s }]" role="button" :disabled="s.props?.disabled">
-          <component :is="s.children.title()[0]"></component>
+          <component :is="s.children.title"></component>
         </li>
       </ul>
     </header>
