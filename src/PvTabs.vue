@@ -56,6 +56,9 @@ const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots
   color: var(--pico-contrast);
   padding: calc(var(--pico-spacing) / 1.5);
   min-width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .pv-tabs header ul li:disabled {
