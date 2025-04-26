@@ -53,7 +53,7 @@ const cols = computed(() => {
 const rows = computed(() => {
   const filters = Object.keys(filterCols)
   const results = props.filter && filters.length > 0
-    ? props.items.filter(i => filters.map(f => i[f].toString().toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
+    ? props.items.filter(i => filters.map(f => (i[f]?.toString() || '').toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
     : props.items
   return results.toSorted((a, b) => {
     if (a[sorting.name] > b[sorting.name]) return 1 * sorting.dir
