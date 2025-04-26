@@ -187,22 +187,22 @@ onMounted(() => {
 }
 
 .pv-toaster .toast.success {
-  background: #398712;
+  background: var(--pv-green);
   color: white;
 }
 
 .pv-toaster .toast.danger {
-  background: #D93526;
+  background: var(--pv-red);
   color: white;
 }
 
 .pv-toaster .toast.warning {
-  background: #FFBF00;
+  background: var(--pv-amber);
   color: black;
 }
 
 .pv-toaster .toast.info {
-  background: #3C71F7;
+  background: var(--pv-cyan);
   color: white;
 }
 </style>
