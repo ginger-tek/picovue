@@ -19,11 +19,13 @@
     {{ tags }}
     <div>{{ selected }}</div>
     <pv-table :items="[{id:1,name:'test'}]" filter bordered sort></pv-table>
-    <pv-modal v-model="show">
+    <pv-modal ref="modalRef">
       <button @click="appendToast('test')">Toast</button>
+      <button @click="confirmAction">Confirm</button>
     </pv-modal>
+    <button @click="confirmAction">Confirm</button>
     <pv-dark-mode></pv-dark-mode>
-    <button @click="show=true">Modal</button>
+    <button @click="modalRef.openModal()">Modal</button>
     <pv-tabs>
       <pv-tab>
         <template #title>
@@ -50,24 +52,37 @@
       <button @click="appendToast('test', {type:'warning'})">Toast</button>
       <button @click="appendToast('test', {type:'danger'})">Toast</button>
     </div>
+    <br>
+    <div class="grid">
+      <pv-button>Regular</pv-button>
+      <pv-button type="success">Success</pv-button>
+      <pv-button type="danger">Danger</pv-button>
+      <pv-button type="warning">Warning</pv-button>
+      <pv-button type="info">Info</pv-button>
+    </div>
     <pv-alert type="success">Success</pv-alert>
     <pv-alert type="info">Info</pv-alert>
     <pv-alert type="warning">Warning</pv-alert>
     <pv-alert type="danger">Error</pv-alert>
+    <pv-confirm ref="confirmRef"></pv-confirm>
   </div>
   <script src="https://unpkg.com/vue/dist/vue.global.js"></script>
   <script src="/dist/picovue.global.js"></script>
   <script type="module">
-
     Vue.createApp({
       setup() {
         const appendToast = Vue.inject('appendToast')
-        const show = Vue.ref(false)
         const selected = Vue.ref(null)
         const selectedArr = Vue.ref([])
-        const tags = Vue.ref(['tag','tesdfsdf'])
+        const tags = Vue.ref(['tag', 'tesdfsdf'])
+        const modalRef = Vue.ref(null)
+        const confirmRef = Vue.ref(null)
 
-        return { show, selected, selectedArr, appendToast, tags }
+        async function confirmAction() {
+          const res = await confirmRef.value.confirmAsync('Are you sure?')
+        }
+
+        return { selected, selectedArr, appendToast, tags, modalRef, confirmRef, confirmAction }
       }
     })
       .use(PicoVue)

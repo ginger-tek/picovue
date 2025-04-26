@@ -46,10 +46,16 @@ const items = [
 ```html
 <PvModal
   v-model="Boolean"
+  ref="Reference"
   hide-close="Switch"
 >
   ...
 </PvModal>
+```
+Use `v-model` to toggle showing/hiding or the modal, or set a component ref and call the `openModal()`/`closeModal()` methods
+```html
+<PvModal ref="myModalRef"/>
+<button @click="myModalRef.openModal()">Open Modal</button>
 ```
 ## Slots
 ```html
@@ -71,7 +77,6 @@ toggle.value = false // close modal
   v-model="Mixed"
   items="Array<String|Object>"
 >
-</PvMultiSelect>
 ```
 ## Slots
 Default label when no values are selected is `Select one or more`. Default value when selected is the selected values as is. You can override the formatting using the `selected` slot.
@@ -137,10 +142,19 @@ NOTE: If a property is in `camelCase`, the template name must use `kebab-case` t
 </template>
 ```
 
-# PvTabs
+# PvTabs / PvTab
 ```html
 <PvTabs persist="Switch">
-  <PvTab title="String">
+  <PvTab>
+    <template #title>
+      First Tab
+    </template>
+    ...
+  </PvTab>
+  <PvTab>
+    <template #title>
+      Second Tab
+    </template>
     ...
   </PvTab>
 </PvTabs>
@@ -148,7 +162,7 @@ NOTE: If a property is in `camelCase`, the template name must use `kebab-case` t
 
 # PvTags
 ```html
-<PvTags v-model="value"></PvTags>
+<PvTags v-model="Array"></PvTags>
 ```
 
 # PvToaster
