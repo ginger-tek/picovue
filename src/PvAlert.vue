@@ -2,7 +2,16 @@
 const props = defineProps({
   type: {
     type: String,
-    default: null
+    default: null,
+    validator(value) {
+      return [
+        null,
+        'success',
+        'info',
+        'warning',
+        'danger'
+      ].includes(value)
+    }
   }
 })
 </script>
@@ -24,22 +33,22 @@ const props = defineProps({
 }
 
 .pv-alert.success {
-  background: #398712;
+  background: var(--pv-green);
   color: white;
 }
 
 .pv-alert.danger {
-  background: #D93526;
+  background: var(--pv-red);
   color: white;
 }
 
 .pv-alert.warning {
-  background: #FFBF00;
+  background: var(--pv-amber);
   color: black;
 }
 
 .pv-alert.info {
-  background: #3C71F7;
+  background: var(--pv-cyan);
   color: white;
 }
 </style>
