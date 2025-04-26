@@ -1,3 +1,4 @@
+import './pv-main.css'
 import PvTable from './PvTable.vue'
 import PvDarkMode from './PvDarkMode.vue'
 import PvModal from './PvModal.vue'
@@ -8,6 +9,8 @@ import PvTabs from './PvTabs.vue'
 import PvTab from './PvTab.vue'
 import PvToaster, { appendToast, removeToast } from './PvToaster.vue'
 import PvAlert from './PvAlert.vue'
+import PvButton from './PvButton.vue'
+import PvConfirm from './PvConfirm.vue'
 
 function install(app) {
 	app.component('PvTable', PvTable)
@@ -20,6 +23,8 @@ function install(app) {
 	app.component('PvTab', PvTab)
 	app.component('PvToaster', PvToaster)
 	app.component('PvAlert', PvAlert)
+  app.component('PvButton', PvButton)
+  app.component('PvConfirm', PvConfirm)
 	app.provide('appendToast', appendToast)
 	app.provide('removeToast', removeToast)
 }
@@ -36,6 +41,8 @@ export default {
   PvTab,
   PvToaster,
   PvAlert,
+  PvButton,
+  PvConfirm,
   appendToast,
 	removeToast
 }
