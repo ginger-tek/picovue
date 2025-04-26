@@ -16,7 +16,7 @@ function closeModal() {
   modal.value.close()
   doc.classList.remove('modal-is-open')
   emit('update:modelValue', false)
-  nextTick(() => emit('closed'))
+  setTimeout(() => emit('closed'), 200)
 }
 
 function openModal() {
@@ -32,9 +32,9 @@ watch(() => toggleModal.value, (n) => {
   else closeModal()
 })
 
-onMounted(() => {
-  modal.value.addEventListener('close', closeModal)
-})
+defineExpose({ closeModal, openModal })
+
+onMounted(() => modal.value.addEventListener('close', closeModal))
 </script>
 
 <template>
@@ -50,76 +50,3 @@ onMounted(() => {
     </article>
   </dialog>
 </template>
-
-<style scoped>
-dialog.pv-modal {
-  --pv-modal-distance: 1em;
-  --pv-modal-shrink: .95;
-  --pv-modal-duration: .2s;
-  animation: fadeout var(--pv-modal-duration) ease-out forwards;
-}
-
-dialog.pv-modal[open] {
-  animation: fadein var(--pv-modal-duration) ease-in forwards;
-}
-
-dialog.pv-modal>article {
-  animation: slidedown var(--pv-modal-duration) ease-out forwards;
-}
-
-dialog.pv-modal[open]>article {
-  animation: slideup var(--pv-modal-duration) ease-in forwards;
-}
-
-dialog.pv-modal article>header .close {
-  cursor: pointer;
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-    display: none;
-  }
-
-  100% {
-    opacity: 1;
-    display: flex;
-  }
-}
-
-@keyframes fadeout {
-  0% {
-    opacity: 1;
-    display: flex;
-  }
-
-  100% {
-    opacity: 0;
-    display: none;
-  }
-}
-
-@keyframes slideup {
-  0% {
-    margin-top: var(--pv-modal-distance);
-    transform: scale(var(--pv-modal-shrink));
-  }
-
-  100% {
-    margin-top: 0;
-    transform: scale(1);
-  }
-}
-
-@keyframes slidedown {
-  0% {
-    margin-top: 0;
-    transform: scale(1);
-  }
-
-  100% {
-    margin-top: var(--pv-modal-distance);
-    transform: scale(var(--pv-modal-shrink));
-  }
-}
-</style>
