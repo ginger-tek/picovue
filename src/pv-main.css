@@ -1,0 +1,89 @@
+:root {
+  --pv-modal-distance: 1em;
+  --pv-modal-shrink: .95;
+  --pv-modal-duration: .2s;
+
+  --pv-green: #33790F;
+  --pv-green-hover: #398712;
+  --pv-green-box-shadow: #33790F83;
+
+  --pv-amber: #E8AE01;
+  --pv-amber-hover: #FFBF00;
+  --pv-amber-box-shadow: #E8AE0183;
+
+  --pv-red: #C52F21;
+  --pv-red-hover: #D93526;
+  --pv-red-box-shadow: #C52F2183;
+
+  --pv-cyan: #047878;
+  --pv-cyan-hover: #058686;
+  --pv-cyan-box-shadow: #04787883;
+}
+
+dialog {
+  animation: pvfadeout var(--pv-modal-duration) ease-out forwards;
+}
+
+dialog[open] {
+  animation: pvfadein var(--pv-modal-duration) ease-in forwards;
+}
+
+dialog>article {
+  animation: pvslidedown var(--pv-modal-duration) ease-out forwards;
+}
+
+dialog[open]>article {
+  animation: pvslideup var(--pv-modal-duration) ease-in forwards;
+}
+
+dialog>article>header>.close {
+  cursor: pointer;
+}
+
+@keyframes pvfadein {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
+
+@keyframes pvfadeout {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes pvslideup {
+  0% {
+    margin-top: var(--pv-modal-distance);
+    transform: scale(var(--pv-modal-shrink));
+  }
+
+  100% {
+    margin-top: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes pvslidedown {
+  0% {
+    margin-top: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    margin-top: var(--pv-modal-distance);
+    transform: scale(var(--pv-modal-shrink));
+  }
+}
