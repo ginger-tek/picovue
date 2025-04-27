@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 const slots = useSlots().default()
-const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots[0])
+const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots.find(s => !(s.props?.disabled || null) && !(s.props?.hidden || null)) || slots[0])
 </script>
 
 <template>
@@ -17,7 +17,9 @@ const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots
     <header>
       <ul :class="{ stretch }">
         <li v-for="(s, i) in slots" :key="'t' + i" @click="active = s"
-          :class="['tab-btn secondary', { active: active == s }]" role="button" :disabled="s.props?.disabled">
+          :class="['tab-btn secondary', { active: active == s }]" role="button"
+          :disabled="s.props?.disabled || null"
+          :hidden="s.props?.hidden || null">
           <component :is="s.children.title"></component>
         </li>
       </ul>
@@ -68,6 +70,10 @@ const active = ref(slots.find(s => s.props?.hasOwnProperty('selected')) || slots
 .pv-tabs header ul li.active {
   background: var(--pico-card-background-color);
   border-bottom-color: transparent;
+}
+
+.pv-tabs header ul li.hidden {
+  display: none;
 }
 
 :where([data-theme=light], :root:not([data-theme=dark])) .pv-tabs header ul li {

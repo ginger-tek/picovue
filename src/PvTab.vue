@@ -9,6 +9,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  hidden: {
+    type: Boolean,
+    default: false
   }
 })
 
