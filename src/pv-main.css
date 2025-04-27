@@ -11,13 +11,13 @@
   --pv-amber-hover: #FFBF00;
   --pv-amber-box-shadow: #E8AE0183;
 
-  --pv-red: #C52F21;
-  --pv-red-hover: #D93526;
-  --pv-red-box-shadow: #C52F2183;
+  --pv-red: #861D13;
+  --pv-red-hover: #9B2318;
+  --pv-red-box-shadow: #861D1383;
 
-  --pv-cyan: #047878;
-  --pv-cyan-hover: #058686;
-  --pv-cyan-box-shadow: #04787883;
+  --pv-cyan: #025D5D;
+  --pv-cyan-hover: #046A6A;
+  --pv-cyan-box-shadow: #025D5D83;
 }
 
 dialog {
