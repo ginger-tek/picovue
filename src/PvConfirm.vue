@@ -33,7 +33,7 @@ defineExpose({ confirmAsync })
       <header>
         <div><b>Confirm</b></div>
       </header>
-      {{ message }}
+      <slot>{{ message }}</slot>
       <footer>
         <button @click="resolution = false" class="secondary">No</button>
         <button @click="resolution = true">Yes</button>
