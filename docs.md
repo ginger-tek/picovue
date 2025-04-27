@@ -10,6 +10,40 @@ Alert is hidden when empty and shows when not empty
 - `warning` (yellow)
 - `danger` (red)
 
+# PvButton
+```html
+<PvButton busy="Boolean" type="String"></PvAlert>
+```
+## Attributes
+### Busy
+- `true|false`
+### Type
+- `success` (green)
+- `info` (blue)
+- `warning` (yellow)
+- `danger` (red)
+
+# PvConfirm
+```html
+<PvConfirm ref="myReference"/>
+<!-- or -->
+<PvConfirm ref="myReference">
+  Are you sure?
+</PvConfirm>
+```
+```html
+<button @click="confirmAction">Confirm</button>
+```
+```js
+const myReference = ref(null)
+
+async function confirmAction() {
+  const result = await myReference.value.confirmAsync('Are you sure?')
+  if (!result) return
+  // ...
+}
+```
+
 # PvDarkMode
 ```html
 <PvDarkMode persist="Switch"/>
@@ -20,8 +54,7 @@ Alert is hidden when empty and shows when not empty
 <PvDropdown
   v-model="Mixed"
   items="Array<String|Object>"
->
-</PvDropdown>
+/>
 ```
 ## Slots
 Default label when unselected is `Select one`. Default value when selected is the selected value as is. You can override the 
@@ -52,9 +85,19 @@ const items = [
   ...
 </PvModal>
 ```
-Use `v-model` to toggle showing/hiding or the modal, or set a component ref and call the `openModal()`/`closeModal()` methods
+Use `v-model` to toggle showing/hiding or the modal:
 ```html
-<PvModal ref="myModalRef"/>
+
+```
+```js
+const toggle = ref(false)
+
+toggle.value = true // open modal
+toggle.value = false // close modal
+```
+or set a component ref and call the `openModal()`/`closeModal()` methods
+```html
+<PvModal ref="myModalRef">
 <button @click="myModalRef.openModal()">Open Modal</button>
 ```
 ## Slots
@@ -62,13 +105,6 @@ Use `v-model` to toggle showing/hiding or the modal, or set a component ref and 
 <template #heading>
   <b>My Modal</b>
 </template>
-```
-## Controls
-```js
-const toggle = ref(false)
-
-toggle.value = true // open modal
-toggle.value = false // close modal
 ```
 
 # PvMultiSelect
@@ -145,18 +181,17 @@ NOTE: If a property is in `camelCase`, the template name must use `kebab-case` t
 # PvTabs / PvTab
 ```html
 <PvTabs persist="Switch">
-  <PvTab>
+  <PvTab
+    hidden="Boolean"
+    disabled="Boolean"
+    selected="Boolean"
+  >
     <template #title>
       First Tab
     </template>
     ...
   </PvTab>
-  <PvTab>
-    <template #title>
-      Second Tab
-    </template>
-    ...
-  </PvTab>
+  ...
 </PvTabs>
 ```
 
