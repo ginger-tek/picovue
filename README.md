@@ -36,6 +36,8 @@ Vue.createApp({
 ```
 ## Documentation
 - [PvAlert](./docs.md#PvAlert)
+- [PvButton](./docs.md#PvButton)
+- [PvConfirm](./docs.md#PvConfirm)
 - [PvDarkMode](./docs.md#PvDarkMode)
 - [PvDropdown](./docs.md#PvDropdown)
 - [PvModal](./docs.md#PvModal)
