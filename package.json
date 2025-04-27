@@ -30,7 +30,7 @@
   "homepage": "https://github.com/ginger-tek/picovue#readme",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm audit fix && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
