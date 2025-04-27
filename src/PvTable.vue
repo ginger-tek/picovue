@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch, computed } from 'vue'
+import { reactive, watch, computed, ref, onMounted, nextTick } from 'vue'
 
 const props = defineProps({
   items: {
@@ -36,6 +36,8 @@ const props = defineProps({
   }
 })
 
+const rowRefs = ref([])
+const rowText = ref([])
 const filterCols = reactive({})
 const sorting = reactive({
   dir: null,
@@ -53,7 +55,7 @@ const cols = computed(() => {
 const rows = computed(() => {
   const filters = Object.keys(filterCols)
   const results = props.filter && filters.length > 0
-    ? props.items.filter(i => filters.map(f => (i[f]?.toString() || '').toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b == true))
+    ? props.items.filter((i, x) => filters.map(f => (rowText.value[x]?.[cols.value.findIndex(c => c.name == f)]?.toString() || '').toLowerCase().indexOf(filterCols[f].toLowerCase()) > -1).every(b => b === true))
     : props.items
   return results.toSorted((a, b) => {
     if (a[sorting.name] > b[sorting.name]) return 1 * sorting.dir
@@ -76,7 +78,9 @@ function toAttributeName(n) {
   return n.split(/_|-|(?=[A-Z])/).map(w => w.toLowerCase()).join('-')
 }
 
-watch(() => filterCols, (n, _o) => {
+onMounted(() => watch(() => props.items, () => nextTick(() => rowText.value = rowRefs.value?.map(r => r.innerText?.trim()?.split("\t")))))
+
+watch(() => filterCols, (n, _) => {
   Object.keys(n).forEach(k => {
     if (filterCols[k] == '' || filterCols[k] == null) delete filterCols[k]
   })
@@ -119,7 +123,7 @@ watch(() => filterCols, (n, _o) => {
         </tr>
       </tbody>
       <tbody v-show="!busy">
-        <tr v-for="(r, rx) in rows" :key="'r' + rx">
+        <tr v-for="(r, rx) in rows" :key="'r' + rx" ref="rowRefs">
           <td v-for="c in cols" :key="c.name" :style="{ 'text-align': c.align || 'inherit' }">
             <slot :name="toAttributeName(c.name)" :="r">{{ r[c.name] }}</slot>
           </td>

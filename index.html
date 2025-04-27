@@ -18,7 +18,12 @@
     <pv-tags v-model="tags"></pv-tags>
     {{ tags }}
     <div>{{ selected }}</div>
-    <pv-table :items="[{id:1,name:'test'}]" filter bordered sort></pv-table>
+    <pv-table :items="items" filter bordered sort>
+      <template #completed="{completed}">
+        {{ completed ? 'Yes' : 'No' }}
+        <i class="bi bi-clock"></i>
+      </template>
+    </pv-table>
     <pv-modal ref="modalRef">
       <button @click="appendToast('test')">Toast</button>
       <button @click="confirmAction">Confirm</button>
@@ -77,12 +82,19 @@
         const tags = Vue.ref(['tag', 'tesdfsdf'])
         const modalRef = Vue.ref(null)
         const confirmRef = Vue.ref(null)
+        const items = Vue.ref([])
 
         async function confirmAction() {
           const res = await confirmRef.value.confirmAsync('Are you sure?')
         }
 
-        return { selected, selectedArr, appendToast, tags, modalRef, confirmRef, confirmAction }
+        async function getItems() {
+          items.value = await fetch('https://jsonplaceholder.typicode.com/todos').then(r => r.json())
+        }
+
+        Vue.onBeforeMount(getItems)
+
+        return { selected, selectedArr, appendToast, tags, modalRef, confirmRef, items, confirmAction }
       }
     })
       .use(PicoVue)
