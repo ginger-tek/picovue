@@ -1,6 +1,6 @@
 <div align=center>
   <h1>PicoVue</h1>
-  <p>A small collection of <a href="https://vuejs.org">Vue 3</a> UI components styled for the <a href="https://picocss.com">Pico CSS</a> framework, with useful utilities such as dynamic table with column filtering, modals, toasters, and more!</p>
+  <p><b>A small collection of <a href="https://vuejs.org">Vue 3</a> UI components styled for the <a href="https://picocss.com">Pico CSS</a> framework</b></p>
 </div>
 
 ## How to Use
