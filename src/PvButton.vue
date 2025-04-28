@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  type: {
+  variant: {
     type: String,
     default: null,
     validator(value) {
@@ -13,6 +13,17 @@ defineProps({
       ].includes(value)
     }
   },
+  type: {
+    type: String,
+    default: 'button',
+    validator(value) {
+      return [
+        'button',
+        'reset',
+        'submit'
+      ].includes(value)
+    }
+  },
   busy: {
     type: Boolean,
     default: false
@@ -21,7 +32,7 @@ defineProps({
 </script>
 
 <template>
-  <button :class="['pv-btn', type]" :aria-busy="busy" :disabled="busy">
+  <button :class="['pv-btn', variant]" :type="type" :aria-busy="busy" :disabled="busy">
     <slot></slot>
   </button>
 </template>
