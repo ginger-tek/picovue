@@ -1,10 +1,10 @@
 # PvAlert
 ```html
-<PvAlert type="String"></PvAlert>
+<PvAlert variant="String"></PvAlert>
 ```
 Alert is hidden when empty and shows when not empty
 ## Attributes
-### Type
+### Variant
 - `success` (green)
 - `info` (blue)
 - `warning` (yellow)
@@ -12,12 +12,12 @@ Alert is hidden when empty and shows when not empty
 
 # PvButton
 ```html
-<PvButton busy="Boolean" type="String"></PvAlert>
+<PvButton busy="Boolean" variant="String"></PvAlert>
 ```
 ## Attributes
 ### Busy
 - `true|false`
-### Type
+### Variant
 - `success` (green)
 - `info` (blue)
 - `warning` (yellow)
@@ -229,10 +229,10 @@ PicoVue.appendToast()
 ```
 **Constructor**
 ```
-appendToast(body: String, { type: String, stay: Boolean, dismissAfter: Number, id: String }: ?Object)
+appendToast(body: String, { variant: String, stay: Boolean, dismissAfter: Number, id: String }: ?Object)
 ```
 **Options:**
-- `type`: Default none (gray)
+- `variant`: Default none (gray)
   - `success` (green)
   - `info` (blue)
   - `warning` (yellow)
