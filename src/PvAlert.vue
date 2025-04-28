@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  type: {
+  variant: {
     type: String,
     default: null,
     validator(value) {
@@ -17,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="['pv-alert', type]">
+  <div :class="['pv-alert', variant]" role="alert">
     <slot></slot>
   </div>
 </template>
