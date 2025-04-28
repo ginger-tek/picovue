@@ -35,7 +35,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <label class="pv-dark-mode">
+  <label class="pv-dark-mode" role="button">
     <input type="checkbox" hidden v-model="theme" :true-value="'dark'" :false-value="'light'">
     <span :class="[theme]"></span>
   </label>
@@ -44,6 +44,16 @@ onBeforeMount(() => {
 <style scoped>
 .pv-dark-mode {
   padding: .5rem;
+  border: unset;
+  border-radius: unset;
+  background-color: unset;
+  box-shadow: unset;
+  color: unset;
+  font-weight: unset;
+  font-size: unset;
+  line-height: unset;
+  text-align: unset;
+  margin: unset;
 }
 
 .pv-dark-mode span {
