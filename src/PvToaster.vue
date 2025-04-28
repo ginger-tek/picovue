@@ -11,14 +11,14 @@ export const removeToast = (e) => {
 
 export const appendToast = (body, opts = {}) => {
   opts.dismissAfter ??= 3
-  opts.type ??= null
+  opts.variant ??= null
   opts.stay ??= false
   opts.id ??= 'pv-toaster'
   const toaster = document.getElementById(opts.id)
   if (!toaster) throw new Error('Toaster not found')
   const toast = document.createElement('div')
   toast.classList.add('toast')
-  if (opts.type) toast.classList.add(opts.type)
+  if (opts.variant) toast.classList.add(opts.variant)
   toast.innerHTML = `<div aria-label="Close" class="close"></div><div>${body}</div>`
   toast.querySelector('.close')?.addEventListener('click', ev => removeToast(ev.currentTarget.parentElement))
   toaster.appendChild(toast)
