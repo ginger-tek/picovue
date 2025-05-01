@@ -48,7 +48,7 @@ function onType() {
 
 function selectItem(i) {
   model.value = props.options?.model ? props.options.model(i) : i
-  nextTick(() => inputVal.value = model.value)
+  nextTick(() => inputVal.value = props.options?.display ? props.options.display(i) : i)
   listRef.value.removeAttribute('open')
 }
 </script>
