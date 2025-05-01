@@ -11,6 +11,8 @@
 
 <body>
   <div id="app" class="container">
+    {{ selectedItem }}
+    <pv-input-list v-model="selectedItem" :items="getListItems" :options="inputListOpts"></pv-input-list>
     <pv-dropdown v-model="selected" :items="['first', 'second']"></pv-dropdown>
     <pv-multi-select v-model="selectedArr" :items="['first', 'second']">
       <template #selected>{{ selectedArr.join(', ') }}</template>
@@ -75,11 +77,19 @@
       setup() {
         const appendToast = Vue.inject('appendToast')
         const selected = Vue.ref(null)
+        const selectedItem = Vue.ref(null)
         const selectedArr = Vue.ref([])
         const tags = Vue.ref(['tag', 'tesdfsdf'])
         const modalRef = Vue.ref(null)
         const confirmRef = Vue.ref(null)
         const items = Vue.ref([])
+        const getListItems = async (v) => {
+          const res = await fetch('https://jsonplaceholder.typicode.com/users').then(r => r.json())
+          return res.filter(i => i.name.match(new RegExp(v, 'i')))
+        }
+        const inputListOpts = {
+          display: (v) => v.name
+        }
 
         async function confirmAction() {
           const res = await confirmRef.value.confirmAsync('Are you sure?')
@@ -91,7 +101,7 @@
 
         Vue.onBeforeMount(getItems)
 
-        return { selected, selectedArr, appendToast, tags, modalRef, confirmRef, items, confirmAction }
+        return { selected, selectedArr, selectedItem, appendToast, tags, modalRef, confirmRef, items, inputListOpts, getListItems, confirmAction }
       }
     })
       .use(PicoVue)
