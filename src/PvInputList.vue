@@ -88,7 +88,7 @@ function selectItem(i) {
     }
 
     >ul {
-      max-height: 300px;
+      max-height: 275px;
       overflow: auto;
     }
   }
