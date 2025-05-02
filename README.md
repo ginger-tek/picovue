@@ -40,6 +40,7 @@ Vue.createApp({
 - [PvConfirm](./docs.md#PvConfirm)
 - [PvDarkMode](./docs.md#PvDarkMode)
 - [PvDropdown](./docs.md#PvDropdown)
+- [PvInputList](./docs.md#PvInputList)
 - [PvModal](./docs.md#PvModal)
 - [PvMultiSelect](./docs.md#PvMultiSelect)
 - [PvTable](./docs.md#PvTable)
