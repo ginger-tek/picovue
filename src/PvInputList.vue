@@ -6,9 +6,13 @@ const props = defineProps({
     type: [Array, Function],
     default: []
   },
-  options: {
-    type: Object,
-    default: {}
+  debounce: {
+    type: Number,
+    default: 250
+  },
+  placeholder: {
+    type: String,
+    default: 'Type to search...'
   }
 })
 
@@ -21,6 +25,7 @@ let bounce
 
 function onInput() {
   if (!inputVal.value) {
+    model.value = null
     listRef.value.removeAttribute("open")
     listItems.value = []
   }
@@ -34,37 +39,36 @@ function onInput() {
         if (props.items && props.items.constructor && props.items.call && props.items.apply) {
           const res = await props.items(inputVal.value)
           if (res && Array.isArray(res)) listItems.value = res
-          else throw new Error('Returned type is not an array')
+          else throw new Error('Returned value is not an array')
         } else if (props.items && Array.isArray(props.items))
-          listItems.value = props.options?.filter ? props.items.filter(props.options.filter) : props.items
-        else throw new Error('Items is neither an array or function')
+          listItems.value = props.items
+        else throw new Error('Items must be either an array or a callback function')
       } catch (ex) {
         console.error(ex)
       } finally {
         loading.value = false
       }
-    }, props.options?.debounce || 250)
+    }, props.debounce || 250)
   }
 }
 
 function selectItem(i) {
-  model.value = props.options?.model ? props.options.model(i) : i
-  nextTick(() => inputVal.value = props.options?.display ? props.options.display(i) : i)
+  model.value = i.value
+  nextTick(() => inputVal.value = i.label)
   listRef.value.removeAttribute('open')
 }
 </script>
 
 <template>
   <div class="pv-input-list">
-    <input type="search" v-model="inputVal" @input="onInput"
-      :placeholder="props.options?.placeholder || 'Type to search...'">
+    <input type="search" v-model="inputVal" @input="onInput" :placeholder="props.placeholder">
     <details class="dropdown" ref="listRef">
       <summary></summary>
       <ul>
         <li v-if="loading" aria-busy="true"></li>
         <li v-else-if="!loading && !!inputVal && !listItems.length">No items found</li>
-        <li v-for="i in listItems" :key="i?.value || i" @click="selectItem(i)">
-          <a>{{ i?.name || i }}</a>
+        <li v-for="(i, x) in listItems" :key="'i-' + x" @click="selectItem(i)">
+          <a>{{ i.label }}</a>
         </li>
       </ul>
     </details>
