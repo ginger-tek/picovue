@@ -19,7 +19,7 @@ const listRef = ref(null)
 const listItems = ref([])
 let bounce
 
-function onType() {
+function onInput() {
   if (!inputVal.value) {
     listRef.value.removeAttribute("open")
     listItems.value = []
@@ -35,8 +35,9 @@ function onType() {
           const res = await props.items(inputVal.value)
           if (res && Array.isArray(res)) listItems.value = res
           else throw new Error('Returned type is not an array')
-        } else if (props.items && Array.isArray(props.items) && props.options?.filter)
-          listItems.value = props.items.filter(props.options.filter)
+        } else if (props.items && Array.isArray(props.items))
+          listItems.value = props.options?.filter ? props.items.filter(props.options.filter) : props.items
+        else throw new Error('Items is neither an array or function')
       } catch (ex) {
         console.error(ex)
       } finally {
@@ -55,7 +56,8 @@ function selectItem(i) {
 
 <template>
   <div class="pv-input-list">
-    <input type="search" v-model="inputVal" @input="onType" :placeholder="props.options?.placeholder || 'Type to search...'">
+    <input type="search" v-model="inputVal" @input="onInput"
+      :placeholder="props.options?.placeholder || 'Type to search...'">
     <details class="dropdown" ref="listRef">
       <summary></summary>
       <ul>
@@ -85,6 +87,10 @@ function selectItem(i) {
       visibility: hidden;
     }
 
+    >ul {
+      max-height: 300px;
+      overflow: auto;
+    }
   }
 
   >input[type=search] {
