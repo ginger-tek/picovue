@@ -35,8 +35,8 @@ function onType() {
           const res = await props.items(inputVal.value)
           if (res && Array.isArray(res)) listItems.value = res
           else throw new Error('Returned type is not an array')
-        } else if (props.items && Array.isArray(props.items) && props.options?.itemsFilter)
-          listItems.value = props.items.filter(props.options.itemsFilter)
+        } else if (props.items && Array.isArray(props.items) && props.options?.filter)
+          listItems.value = props.items.filter(props.options.filter)
       } catch (ex) {
         console.error(ex)
       } finally {
