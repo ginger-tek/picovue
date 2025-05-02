@@ -75,6 +75,32 @@ const items = [
 ]
 ```
 
+# PvInputList
+```html
+<PvInputList
+  v-model="Any"
+  :items="Array | Function"
+  :debounce="Number"
+  :placeholder="String"
+/>
+```
+## Attributes
+### Items
+When items is set to a function, each debounced key input will call the function and be passed the current input value as an argument. The function must return an array of objects with `label` and `value` properties, which will be used to render the list items and set the selected value, respectively.
+```js
+function getItems(value) {
+  const res = await fetch('/ajax-search?text=' + value).then(r => r.json())
+  return res.map(data => ({
+    label: data.displayName,
+    value: data
+  }))
+}
+```
+### Debounce
+The default debounce interval is 250ms, but a different value can be set on the `debounce` attribute.
+### Placeholder
+The placeholder attribute operates the same as a regular HTML text input.
+
 # PvModal
 ```html
 <PvModal
@@ -95,7 +121,7 @@ const toggle = ref(false)
 toggle.value = true // open modal
 toggle.value = false // close modal
 ```
-or set a component ref and call the `openModal()`/`closeModal()` methods
+Or set a component ref and call the `openModal()`/`closeModal()` methods
 ```html
 <PvModal ref="myModalRef">
 <button @click="myModalRef.openModal()">Open Modal</button>
