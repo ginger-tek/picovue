@@ -20,7 +20,7 @@
     <pv-tags v-model="tags"></pv-tags>
     {{ tags }}
     <div>{{ selected }}</div>
-    <pv-modal ref="modalRef">
+    <pv-modal ref="modalRef" @closed="getItems">
       <button @click="appendToast('test')">Toast</button>
       <button @click="confirmAction">Confirm</button>
     </pv-modal>
@@ -101,7 +101,7 @@
 
         Vue.onBeforeMount(getItems)
 
-        return { selected, selectedArr, selectedItem, appendToast, tags, modalRef, confirmRef, items, getListItems, confirmAction }
+        return { selected, selectedArr, selectedItem, appendToast, tags, modalRef, confirmRef, items, getItems, getListItems, confirmAction }
       }
     })
       .use(PicoVue)
