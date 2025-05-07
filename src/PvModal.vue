@@ -9,22 +9,26 @@ const props = defineProps({
 })
 const toggleModal = defineModel()
 const modal = ref(null)
-const emit = defineEmits(['opened', 'closed'])
+const emit = defineEmits(['opening', 'opened', 'closing', 'closed'])
 const doc = document.documentElement
-
-function closeModal() {
-  modal.value.close()
-  doc.classList.remove('modal-is-open')
-  emit('update:modelValue', false)
-  setTimeout(() => emit('closed'), 200)
-}
 
 function openModal() {
   modal.value.showModal()
-  modal.value.focus()
   doc.classList.add('modal-is-open')
   emit('update:modelValue', true)
-  nextTick(() => emit('opened'))
+  emit('opening')
+  setTimeout(() => emit('opened'), 200)
+}
+
+function closeModal() {
+  modal.value.close()
+}
+
+function handleClose() {
+  doc.classList.remove('modal-is-open')
+  emit('update:modelValue', false)
+  emit('closing')
+  setTimeout(() => emit('closed'), 200)
 }
 
 watch(() => toggleModal.value, (n) => {
@@ -34,7 +38,7 @@ watch(() => toggleModal.value, (n) => {
 
 defineExpose({ closeModal, openModal })
 
-onMounted(() => modal.value.addEventListener('close', closeModal))
+onMounted(() => modal.value.addEventListener('close', handleClose))
 </script>
 
 <template>
