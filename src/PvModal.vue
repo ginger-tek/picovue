@@ -54,3 +54,23 @@ onMounted(() => modal.value.addEventListener('close', handleClose))
     </article>
   </dialog>
 </template>
+
+<style scoped>
+@media (min-width: 900px) {
+  dialog.large>article {
+    max-width: 860px;
+  }
+}
+
+@media (min-width: 1080px) {
+  dialog.large>article {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 1400px) {
+  dialog.large>article {
+    max-width: 1200px;
+  }
+}
+</style>
