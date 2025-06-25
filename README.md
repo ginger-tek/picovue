@@ -44,6 +44,6 @@ Vue.createApp({
 - [PvModal](./docs.md#PvModal)
 - [PvMultiSelect](./docs.md#PvMultiSelect)
 - [PvTable](./docs.md#PvTable)
-- [PvTabs](./docs.md#PvTabs)
+- [PvTabs](./docs.md#PvTabs--PvTab)
 - [PvTags](./docs.md#PvTags)
 - [PvToaster](./docs.md#PvToaster)
