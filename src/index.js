@@ -1,4 +1,4 @@
-import './pv-main.css'
+import './pv-common.css'
 import PvTable from './PvTable.vue'
 import PvDarkMode from './PvDarkMode.vue'
 import PvModal from './PvModal.vue'
