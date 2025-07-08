@@ -41,3 +41,7 @@ defineExpose({ confirmAsync })
     </article>
   </dialog>
 </template>
+
+<style>
+@import './pv-common.css';
+</style>

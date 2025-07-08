@@ -22,6 +22,10 @@ const props = defineProps({
   </div>
 </template>
 
+<style>
+@import './pv-common.css';
+</style>
+
 <style scoped>
 .pv-alert:not(:empty) {
   display: block;

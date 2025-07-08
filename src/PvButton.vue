@@ -37,6 +37,10 @@ defineProps({
   </button>
 </template>
 
+<style>
+@import './pv-common.css';
+</style>
+
 <style scoped>
 button.pv-btn.success {
   --pico-background-color: var(--pv-green);

@@ -70,6 +70,8 @@ onMounted(() => {
 </template>
 
 <style>
+@import './pv-common.css';
+
 .pv-toaster {
   max-height: 50dvh;
   overflow-y: auto;

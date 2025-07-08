@@ -55,6 +55,10 @@ onMounted(() => modal.value.addEventListener('close', handleClose))
   </dialog>
 </template>
 
+<style>
+@import './pv-common.css';
+</style>
+
 <style scoped>
 @media (min-width: 900px) {
   dialog.large>article {
