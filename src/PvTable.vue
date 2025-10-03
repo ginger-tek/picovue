@@ -78,7 +78,11 @@ function toAttributeName(n) {
   return n.split(/_|-|(?=[A-Z])/).map(w => w.toLowerCase()).join('-')
 }
 
-onMounted(() => watch(() => props.items, () => nextTick(() => rowText.value = rowRefs.value?.map(r => r.innerText?.trim()?.split("\t")))))
+onMounted(() => watch(() => {
+  props.items, () => nextTick(() => {
+    rowText.value = rowRefs.value?.map(r => r.innerText?.trim()?.split("\t"))
+  })
+}, { deep: true }))
 
 watch(() => filterCols, (n, _) => {
   Object.keys(n).forEach(k => {
@@ -101,8 +105,7 @@ watch(() => filterCols, (n, _) => {
                 </datalist>
               </div>
               <span v-else :class="{ active: sorting.name == c.name }"
-                :style="{ 'text-align': c.align || 'inherit' }">{{
-                  c.label }}</span>
+                :style="{ 'text-align': c.align || 'inherit' }">{{ c.label }}</span>
               <div v-if="sort" class="sorter">
                 <div @click="sortCol(c.name, 1)"
                   :class="['sort asc', { active: sorting.name == c.name && sorting.dir == 1 }]">▲</div>
