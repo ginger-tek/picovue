@@ -78,11 +78,11 @@ function toAttributeName(n) {
   return n.split(/_|-|(?=[A-Z])/).map(w => w.toLowerCase()).join('-')
 }
 
-onMounted(() => watch(() => {
-  props.items, () => nextTick(() => {
-    rowText.value = rowRefs.value?.map(r => r.innerText?.trim()?.split("\t"))
-  })
-}, { deep: true }))
+onMounted(() => {
+  watch(() => props.items, () => {
+    nextTick(() => rowText.value = rowRefs.value?.map(r => [...r.querySelectorAll('td')]?.map(td => td.innerText.trim())))
+  }, { deep: true })
+})
 
 watch(() => filterCols, (n, _) => {
   Object.keys(n).forEach(k => {
