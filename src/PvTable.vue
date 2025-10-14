@@ -80,7 +80,7 @@ function toAttributeName(n) {
 
 onMounted(() => {
   watch(() => props.items, () => {
-    nextTick(() => rowText.value = rowRefs.value?.map(r => r.innerText?.trim()?.split("\t")))
+    nextTick(() => rowText.value = rowRefs.value?.map(r => [...r.querySelectorAll('td')]?.map(td => td.innerText.trim())))
   }, { deep: true })
 })
 
