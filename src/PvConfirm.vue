@@ -8,7 +8,7 @@ const message = ref(null)
 async function confirmAsync(msg = '') {
   resolution.value = null
   message.value = msg
-  confirmEl.value.showModal()
+  confirmEl.value.show()
   return new Promise(res => {
     watch(() => resolution.value, (n) => {
       if (n !== null) {

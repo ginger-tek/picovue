@@ -28,6 +28,11 @@ dialog[open] {
   animation: pvfadein var(--pv-modal-duration) ease-in forwards;
 }
 
+.modal-is-open {
+  pointer-events: auto;
+  touch-action: auto;
+}
+
 dialog>article {
   animation: pvslidedown var(--pv-modal-duration) ease-out forwards;
 }
