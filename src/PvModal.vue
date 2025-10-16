@@ -13,7 +13,7 @@ const emit = defineEmits(['opening', 'opened', 'closing', 'closed'])
 const doc = document.documentElement
 
 function openModal() {
-  modal.value.showModal()
+  modal.value.show()
   doc.classList.add('modal-is-open')
   emit('update:modelValue', true)
   emit('opening')
