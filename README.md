@@ -37,7 +37,6 @@ Vue.createApp({
 ## Documentation
 - [PvAlert](./docs.md#PvAlert)
 - [PvButton](./docs.md#PvButton)
-- [PvConfirm](./docs.md#PvConfirm)
 - [PvDarkMode](./docs.md#PvDarkMode)
 - [PvDropdown](./docs.md#PvDropdown)
 - [PvInputList](./docs.md#PvInputList)
@@ -47,3 +46,4 @@ Vue.createApp({
 - [PvTabs](./docs.md#PvTabs--PvTab)
 - [PvTags](./docs.md#PvTags)
 - [PvToaster](./docs.md#PvToaster)
+- [confirmAsync](./docs.md#confirmAsync)
