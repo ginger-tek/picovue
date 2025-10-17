@@ -23,27 +23,6 @@ Alert is hidden when empty and shows when not empty
 - `warning` (yellow)
 - `danger` (red)
 
-# PvConfirm
-```html
-<PvConfirm ref="myReference"/>
-<!-- or -->
-<PvConfirm ref="myReference">
-  Are you sure?
-</PvConfirm>
-```
-```html
-<button @click="confirmAction">Confirm</button>
-```
-```js
-const myReference = ref(null)
-
-async function confirmAction() {
-  const result = await myReference.value.confirmAsync('Are you sure?')
-  if (!result) return
-  // ...
-}
-```
-
 # PvDarkMode
 ```html
 <PvDarkMode persist="Switch"/>
@@ -266,3 +245,28 @@ appendToast(body: String, { variant: String, stay: Boolean, dismissAfter: Number
 - `id`: Default `pv-toaster`
 - `stay`: Default `false`
 - `dismissAfter`: Default `5` seconds
+
+# confirmAsync
+Opens a dynamically created modal dialog for confirming an action, waits asynchronously for a response, then returns a boolean result. Canceling or escaping the modal returns false. If the second argument not specified, modal title defaults to 'Confirm'.
+```js
+const confirmAsync = inject('confirmAsync')
+// or
+const { confirmAsync } = PicoVue
+// or
+PicoVue.confirmAsync()
+```
+**Constructor**
+```
+confirmAsync(message: String, title: ?String)
+```
+Example:
+```html
+<button @click="doAction">Confirm</button>
+```
+```js
+async function doAction() {
+  const result = await confirmAsync('Are you sure?')
+  if (!result) return
+  // ...
+}
+```
